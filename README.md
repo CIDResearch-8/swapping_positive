@@ -1,0 +1,2 @@
+# swapping_positive
+ネガティブな言葉をポジティブな言葉に変換し、SNSに投稿するAndroid用アプリです。
