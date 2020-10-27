@@ -1,31 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8a25c91-c8e4-4b87-9387-466c7e1f07c1" name="Default Changelist" comment="" />
+    <list default="true" id="d8a25c91-c8e4-4b87-9387-466c7e1f07c1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/swapping_positive.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/hello.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/SampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/SampleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/test/SampleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/test/SampleController.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="swapping_positive" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1jRCtkOPu2OUxseCsBQZe6IwVrR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Confirmation" />
   </component>
   <component name="RunManager">
     <configuration name="SampleController" type="Application" factoryName="アプリケーション" temporary="true" nameIsGenerated="true">
@@ -78,6 +103,27 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
     <state x="601" y="238" key="#Project_Structure" timestamp="1603758432161">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -87,6 +133,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="463" y="235" width="1092" height="748" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603759471255" />
+    <state x="1097" y="422" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603766016749">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1097" y="422" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1603766016749" />
     <state x="789" y="313" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1603758649632">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -95,6 +145,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="738" y="392" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603758628384" />
+    <state x="837" y="207" key="CommitChangelistDialog2" timestamp="1603767909538">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="837" y="207" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603767909538" />
     <state x="788" y="334" key="FileChooserDialogImpl" timestamp="1603759477582">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -103,9 +157,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="855" y="496" width="332" height="170" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603758144474" />
-    <state x="517" y="187" key="SettingsEditor" timestamp="1603759948285">
+    <state width="1126" height="172" key="GridCell.Tab.0.bottom" timestamp="1603767909564">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="517" y="187" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603759948285" />
+    <state width="1126" height="172" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603767909564" />
+    <state width="1126" height="172" key="GridCell.Tab.0.center" timestamp="1603767909564">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1126" height="172" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603767909564" />
+    <state width="1126" height="172" key="GridCell.Tab.0.left" timestamp="1603767909564">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1126" height="172" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603767909564" />
+    <state width="1126" height="172" key="GridCell.Tab.0.right" timestamp="1603767909564">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1126" height="172" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603767909564" />
+    <state x="159" y="195" key="SettingsEditor" timestamp="1603762908061">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="159" y="195" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603762908061" />
   </component>
 </project>
