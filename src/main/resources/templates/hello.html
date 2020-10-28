@@ -3,8 +3,21 @@
 <head>
     <title>Thymeleaf で出力しますよ</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" media="all" th:href="@{/css/style.css}"/>
 </head>
 <body>
     <p th:text="'こんにちは, ' + ${name} + 'さん!'" />
+    <table class="table">
+        <thead class="sunflower">
+        <tr>
+            <td>NAME</td>
+        </tr>
+        </thead>
+        <tbody th:each="list : ${name}">
+        <tr>
+            <td class="text-str" th:text="${list}"></td>
+        </tr>
+        </tbody>
+    </table>
 </body>
 </html>

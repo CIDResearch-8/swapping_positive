@@ -1,0 +1,17 @@
+@charset "UTF-8";
+body {
+    background-color: #cceeee;
+}
+.table {
+    border: 1px solid red;
+    border-collapse: collapse;
+    margin: 10px;
+}
+.table th, td {
+    border: 1px solid red;
+    margin: 5px;
+}
+.row {
+    margin: 10px;
+    border: 1px solid blue;
+}
