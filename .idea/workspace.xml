@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8a25c91-c8e4-4b87-9387-466c7e1f07c1" name="Default Changelist" comment="2020.10.27コミットその2">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/test/Post.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/confirm.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/result.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/start.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="d8a25c91-c8e4-4b87-9387-466c7e1f07c1" name="Default Changelist" comment="2020.10.28コミット&#10;送信フォームと送信結果を表示する機能を作成">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/test/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/SampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/SampleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/hello.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/hello.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/test/SampleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/test/SampleController.class" afterDir="false" />
@@ -19,6 +14,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="swapping_positive" />
   </component>
@@ -26,8 +24,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="XSLT Stylesheet" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -59,14 +57,27 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\GitHub\swapping_positive\src\main\resources\templates" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="アプリケーション.Main">
+    <configuration name="Main" type="Application" factoryName="アプリケーション" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.test.Main" />
+      <module name="swapping_positive" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SampleController" type="Application" factoryName="アプリケーション" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.test.SampleController" />
       <module name="swapping_positive" />
@@ -88,6 +99,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="アプリケーション.Main" />
         <item itemvalue="アプリケーション.SampleController" />
       </list>
     </recent_temporary>
@@ -129,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603767980222</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="2020.10.28コミット&#10;送信フォームと送信結果を表示する機能を作成">
+      <created>1603881533593</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1603881533593</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -160,7 +179,8 @@
       <path value="$PROJECT_DIR$/swapping_positive" />
     </ignored-roots>
     <MESSAGE value="2020.10.27コミットその2" />
-    <option name="LAST_COMMIT_MESSAGE" value="2020.10.27コミットその2" />
+    <MESSAGE value="2020.10.28コミット&#10;送信フォームと送信結果を表示する機能を作成" />
+    <option name="LAST_COMMIT_MESSAGE" value="2020.10.28コミット&#10;送信フォームと送信結果を表示する機能を作成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="601" y="238" key="#Project_Structure" timestamp="1603758432161">
@@ -187,10 +207,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="738" y="392" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603758628384" />
-    <state x="935" y="214" key="CommitChangelistDialog2" timestamp="1603881503192">
+    <state x="935" y="207" key="CommitChangelistDialog2" timestamp="1603996648929">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="935" y="214" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603881503192" />
+    <state x="935" y="207" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603996648929" />
+    <state x="831" y="427" width="986" height="518" key="DiffContextDialog" timestamp="1603889414060">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="831" y="427" width="986" height="518" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603889414060" />
     <state x="788" y="334" key="FileChooserDialogImpl" timestamp="1603759477582">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -199,30 +223,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="855" y="496" width="332" height="170" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603758144474" />
-    <state width="1126" height="172" key="GridCell.Tab.0.bottom" timestamp="1603881364380">
+    <state width="1126" height="172" key="GridCell.Tab.0.bottom" timestamp="1603996612630">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1126" height="172" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603881364380" />
-    <state width="1126" height="172" key="GridCell.Tab.0.center" timestamp="1603881364380">
+    <state width="1126" height="172" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603996612630" />
+    <state width="1126" height="172" key="GridCell.Tab.0.center" timestamp="1603996612630">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1126" height="172" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603881364380" />
-    <state width="1126" height="172" key="GridCell.Tab.0.left" timestamp="1603881364380">
+    <state width="1126" height="172" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603996612630" />
+    <state width="1126" height="172" key="GridCell.Tab.0.left" timestamp="1603996612629">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1126" height="172" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603881364380" />
-    <state width="1126" height="172" key="GridCell.Tab.0.right" timestamp="1603881364380">
+    <state width="1126" height="172" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603996612629" />
+    <state width="1126" height="172" key="GridCell.Tab.0.right" timestamp="1603996612630">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1126" height="172" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603881364380" />
+    <state width="1126" height="172" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603996612630" />
+    <state x="961" y="344" key="Registry" timestamp="1603982942096">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="961" y="344" key="Registry/0.0.1920.1040@0.0.1920.1040" timestamp="1603982942096" />
     <state x="1073" y="365" key="RollbackChangesDialog" timestamp="1603793594994">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1073" y="365" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603793594994" />
-    <state x="159" y="195" key="SettingsEditor" timestamp="1603794949171">
+    <state x="706" y="239" key="SettingsEditor" timestamp="1603982889646">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="159" y="195" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603794949171" />
+    <state x="706" y="239" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603982889646" />
+    <state x="916" y="406" key="Vcs.Push.Dialog.v2" timestamp="1603881548425">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="916" y="406" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603881548425" />
     <state x="962" y="466" key="com.intellij.ide.util.TipDialog" timestamp="1603795081572">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -231,6 +263,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1002" y="530" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603768644004" />
+    <state x="973" y="361" width="672" height="678" key="search.everywhere.popup" timestamp="1603982928703">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="973" y="361" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603982928703" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
