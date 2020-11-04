@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8a25c91-c8e4-4b87-9387-466c7e1f07c1" name="Default Changelist" comment="2020.10.28コミット&#10;送信フォームと送信結果を表示する機能を作成">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/test/Main.java" afterDir="false" />
+    <list default="true" id="d8a25c91-c8e4-4b87-9387-466c7e1f07c1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/Post.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/SampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/SampleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/hello.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/hello.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/result.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/result.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/test/SampleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/test/SampleController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -148,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603881533593</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="2020.10.30コミット&#10;コメントを追加(途中)">
+      <created>1603996671018</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1603996671018</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -180,7 +190,8 @@
     </ignored-roots>
     <MESSAGE value="2020.10.27コミットその2" />
     <MESSAGE value="2020.10.28コミット&#10;送信フォームと送信結果を表示する機能を作成" />
-    <option name="LAST_COMMIT_MESSAGE" value="2020.10.28コミット&#10;送信フォームと送信結果を表示する機能を作成" />
+    <MESSAGE value="2020.10.30コミット&#10;コメントを追加(途中)" />
+    <option name="LAST_COMMIT_MESSAGE" value="2020.10.30コミット&#10;コメントを追加(途中)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="601" y="238" key="#Project_Structure" timestamp="1603758432161">
@@ -199,18 +210,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="789" y="313" key="#com.intellij.ide.macro.MacrosDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603758649632" />
-    <state x="1129" y="369" key="#com.intellij.ide.util.MemberChooser" timestamp="1603809666605">
+    <state x="1129" y="369" key="#com.intellij.ide.util.MemberChooser" timestamp="1604287372519">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1129" y="369" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1603809666605" />
+    <state x="1129" y="369" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1604287372519" />
     <state x="738" y="392" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1603758628384">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="738" y="392" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603758628384" />
-    <state x="935" y="207" key="CommitChangelistDialog2" timestamp="1603996648929">
+    <state x="935" y="207" key="CommitChangelistDialog2" timestamp="1604522432454">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="935" y="207" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603996648929" />
+    <state x="935" y="207" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604522432454" />
     <state x="831" y="427" width="986" height="518" key="DiffContextDialog" timestamp="1603889414060">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -223,22 +234,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="855" y="496" width="332" height="170" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603758144474" />
-    <state width="1126" height="172" key="GridCell.Tab.0.bottom" timestamp="1603996612630">
+    <state width="1126" height="172" key="GridCell.Tab.0.bottom" timestamp="1604296668998">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1126" height="172" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603996612630" />
-    <state width="1126" height="172" key="GridCell.Tab.0.center" timestamp="1603996612630">
+    <state width="1126" height="172" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604296668998" />
+    <state width="1126" height="172" key="GridCell.Tab.0.center" timestamp="1604296668997">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1126" height="172" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603996612630" />
-    <state width="1126" height="172" key="GridCell.Tab.0.left" timestamp="1603996612629">
+    <state width="1126" height="172" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604296668997" />
+    <state width="1126" height="172" key="GridCell.Tab.0.left" timestamp="1604296668997">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1126" height="172" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603996612629" />
-    <state width="1126" height="172" key="GridCell.Tab.0.right" timestamp="1603996612630">
+    <state width="1126" height="172" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604296668997" />
+    <state width="1126" height="172" key="GridCell.Tab.0.right" timestamp="1604296668997">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1126" height="172" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603996612630" />
+    <state width="1126" height="172" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604296668997" />
     <state x="961" y="344" key="Registry" timestamp="1603982942096">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -255,10 +266,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="916" y="406" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603881548425" />
-    <state x="962" y="466" key="com.intellij.ide.util.TipDialog" timestamp="1603795081572">
+    <state x="962" y="466" key="com.intellij.ide.util.TipDialog" timestamp="1604482226025">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="962" y="466" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603795081572" />
+    <state x="962" y="466" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604482226025" />
     <state x="1002" y="530" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603768644004">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
