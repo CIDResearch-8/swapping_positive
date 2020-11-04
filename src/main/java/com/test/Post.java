@@ -10,6 +10,10 @@ public class Post {
         setPostId(staticPostId);
     }
 
+    public static long getStaticPostId() {
+        return staticPostId;
+    }
+
     public static void nextPostId() {
         staticPostId++;
     }

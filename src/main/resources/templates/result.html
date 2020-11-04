@@ -6,13 +6,6 @@
     <link rel="stylesheet" media="all" th:href="@{/css/style.css}"/>
 </head>
 <body>
-    <h1>送信結果</h1>
-    <p th:text="'Post ID: ' + ${post.postId}" />
-    <p th:text="'名前: ' + ${post.name}" />
-    <p th:text="'コンテンツ: ' + ${post.content}" />
-    <a href="/confirm">違うメッセージを送信する</a>
-    <hr>
-
     <table class="table">
         <thead class="sunflower">
         <tr>
@@ -21,7 +14,7 @@
             <td>メッセージ</td>
         </tr>
         </thead>
-        <tbody th:each="list : ${posts}">
+        <tbody th:each="list : ${postList}">
         <tr>
             <td class="text-str" th:text="${list.postId}"></td>
             <td class="text-str" th:text="${list.name}"></td>
