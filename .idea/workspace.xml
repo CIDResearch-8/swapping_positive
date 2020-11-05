@@ -7,8 +7,6 @@
       <change beforePath="$PROJECT_DIR$/database/test.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/database/test.trace.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/Post.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/SampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/SampleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/confirm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/result.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/result.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/test/SampleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/test/SampleController.class" afterDir="false" />
     </list>
@@ -158,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603996671018</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="2020.11.05コミット&#10;SQLを用いてメッセージ送受信を出来るようにした">
+      <created>1604538991472</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1604538991472</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -219,10 +224,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="738" y="392" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603758628384" />
-    <state x="935" y="205" key="CommitChangelistDialog2" timestamp="1604538960029">
+    <state x="935" y="205" key="CommitChangelistDialog2" timestamp="1604538989591">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="935" y="205" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604538960029" />
+    <state x="935" y="205" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604538989591" />
     <state x="831" y="427" width="986" height="518" key="DiffContextDialog" timestamp="1603889414060">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -235,22 +240,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="855" y="496" width="332" height="170" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603758144474" />
-    <state width="1079" height="156" key="GridCell.Tab.0.bottom" timestamp="1604538860724">
+    <state width="1079" height="156" key="GridCell.Tab.0.bottom" timestamp="1604540470963">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1079" height="156" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604538860724" />
-    <state width="1079" height="156" key="GridCell.Tab.0.center" timestamp="1604538860723">
+    <state width="1079" height="156" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604540470963" />
+    <state width="1079" height="156" key="GridCell.Tab.0.center" timestamp="1604540470963">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1079" height="156" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604538860723" />
-    <state width="1079" height="156" key="GridCell.Tab.0.left" timestamp="1604538860723">
+    <state width="1079" height="156" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604540470963" />
+    <state width="1079" height="156" key="GridCell.Tab.0.left" timestamp="1604540470962">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1079" height="156" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604538860723" />
-    <state width="1079" height="156" key="GridCell.Tab.0.right" timestamp="1604538860724">
+    <state width="1079" height="156" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604540470962" />
+    <state width="1079" height="156" key="GridCell.Tab.0.right" timestamp="1604540470963">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1079" height="156" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604538860723" />
+    <state width="1079" height="156" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604540470963" />
     <state x="961" y="344" key="Registry" timestamp="1603982942096">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
