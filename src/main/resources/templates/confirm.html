@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>送信フォーム</h1>
-<form action="#" th:action="@{/confirm}" th:object="${post}" method="post">
+<form action="#" th:action="@{/confirm}" th:object="${post}" method="get">
     <p>名前: <input type="text" th:field="*{name}" /></p>
     <p>メッセージ: <input type="text" th:field="*{content}" /></p>
     <p><input type="submit" value="送信" /> <input type="reset" value="リセット" /></p>
