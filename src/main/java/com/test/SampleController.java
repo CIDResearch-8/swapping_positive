@@ -63,11 +63,19 @@ public class SampleController {
     }
 
     //./confirmにアクセスし、フォームを送信した後の遷移
-    @PostMapping("/confirm")
+    @PostMapping(value = "/confirm", params = "submit")
     //時系列は@GetMapping → @PostMappingとなる
     public String confirmSubmit(@RequestParam("name") String name, @RequestParam("content") String content) {
         Post.nextPostId();
         jdbcTemplate.update("INSERT INTO TEST (id, name, content) VALUES (?, ?, ?);", Post.getStaticPostId(), name, content);
+        return "redirect:/confirm";
+    }
+
+    @PostMapping(value = "/confirm", params = "reset")
+    //時系列は@GetMapping → @PostMappingとなる
+    public String sqlReset() {
+        jdbcTemplate.update("TRUNCATE TABLE TEST;");
+        Post.resetStaticPostId();
         return "redirect:/confirm";
     }
 }

@@ -14,6 +14,8 @@ public class Post {
         return staticPostId;
     }
 
+    public static void resetStaticPostId() { staticPostId = 0; }
+
     public static void nextPostId() {
         staticPostId++;
     }
