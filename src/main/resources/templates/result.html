@@ -22,5 +22,10 @@
         </tr>
         </tbody>
     </table>
+    <form method="post" th:action="@{/confirm}">
+        名前: <input name="name" /><br />
+        本文: <input name="content" style="width: 400px"/><br />
+        <button type="submit">書き込む</button>
+    </form>
 </body>
 </html>

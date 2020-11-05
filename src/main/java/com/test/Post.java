@@ -22,7 +22,7 @@ public class Post {
         return postId;
     }
 
-    private void setPostId(long postId) {
+    public void setPostId(long postId) {
         this.postId = postId;
     }
 

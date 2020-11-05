@@ -51,6 +51,7 @@ public class SampleController {
         List<Map<String, Object>> dataList = jdbcTemplate.queryForList("SELECT * FROM TEST;");
         for (Map<String, Object> data : dataList) {
             Post post = new Post();
+            post.setPostId(Long.parseLong(data.get("id").toString()));
             post.setName((String)data.get("name"));
             post.setContent((String)data.get("content"));
             postList.add(post);
