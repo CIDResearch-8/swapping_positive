@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf で出力しますよ</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" media="all" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>送信フォーム</h1>
+<form action="#" th:action="@{/confirm}" th:object="${post}" method="get">
+    <p>名前: <input type="text" th:field="*{name}" /></p>
+    <p>メッセージ: <input type="text" th:field="*{content}" /></p>
+    <p><input type="submit" value="送信" /> <input type="reset" value="リセット" /></p>
+</form>
+</body>
+</html>
