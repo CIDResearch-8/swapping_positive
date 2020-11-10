@@ -25,7 +25,7 @@ public class Controllers {
     }
 
     // /login -> login.html
-    @RequestMapping("login")
+    @RequestMapping("/login")
     public String login() {
         return "login";
     }
@@ -48,7 +48,7 @@ public class Controllers {
         }
 
         // /user/
-        @RequestMapping("/{commentID}")
+        @RequestMapping("/{commentId}")
         public String comment() {
             return "user/comment";
         }
