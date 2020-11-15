@@ -2,43 +2,86 @@ package com.swappingpositive.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    DataSource dataSource;
+    @Configuration
+    @EnableWebMvcSecurity
+    public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource);
-    }
+        @Autowired
+        private UserDetailsServiceImpl userDetailsService;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()  // リクエストに対する許可設定
-                .antMatchers("/").permitAll() // 「/」へのアクセスは全許可（ログイン必要なし）
-                .anyRequest().authenticated()  // それ以外へのアクセスは認証（ログイン）必要
-                .and() //設定を終え、次の設定を開始
-                .formLogin() //ログイン処理にフォームを使用
-                .loginPage("/login").permitAll() //ログインページ（パス）を「/login」にする
-                .and() //設定を終え、次の設定を開始
-                .logout()  // ログアウトを有効にする
-                .logoutSuccessUrl("/")  // ログアウトしたら「/」にリダイレクトする
-        ;
-    }
+        @Autowired
+        private AuthenticationProviderImpl authenticationProvider;
 
-    @Bean
-    public UserDetailsService userDetailsService(DataSource dataSource) {
-        JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
-        return manager;
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http
+                    /*.headers()
+                    .xssProtection()
+                    .frameOptions()
+                    .contentTypeOptions()
+                    .cacheControl()
+                    .and()*/
+                    .authorizeRequests()
+                    // 認証対象外のパスを設定する
+                    .antMatchers("/", "/login", "/registration/**", "/css/**", "/js/**", "/img/**")
+                    // 上記パスへのアクセスを許可する
+                    .permitAll()
+                    // その他のリクエストは認証が必要
+                    .anyRequest().authenticated()
+                    .and()
+                    .formLogin()
+                    // ログインフォームのパス
+                    .loginPage("/")
+                    // ログイン処理のパス
+                    .loginProcessingUrl("/login")
+                    // ログイン成功時の遷移先
+                    .defaultSuccessUrl("/menu")
+                    // ログイン失敗時の遷移先
+                    .failureUrl("/login-error")
+                    // ログインフォームで使用するユーザー名のinput name
+                    .usernameParameter("empNo")
+                    // ログインフォームで使用するパスワードのinput name
+                    .passwordParameter("password")
+                    .permitAll()
+                    .and()
+                    .rememberMe()
+                    .tokenValiditySeconds(86400) // 1ヶ月（秒）
+                    .and()
+                    .logout()
+                    // ログアウトがパス(GET)の場合設定する（CSRF対応）
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    // ログアウトがPOSTの場合設定する
+                    //.logoutUrl("/logout")
+                    // ログアウト後の遷移先
+                    .logoutSuccessUrl("/")
+                    // セッションを破棄する
+                    .invalidateHttpSession(true)
+                    // ログアウト時に削除するクッキー名
+                    .deleteCookies("JSESSIONID", "remember-me")
+                    .permitAll();
+        }
+
+        @Autowired
+        public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+            // 独自認証クラスを設定する
+            auth
+                    .authenticationProvider(authenticationProvider)
+                    .userDetailsService(userDetailsService);
+        }
     }
 }
