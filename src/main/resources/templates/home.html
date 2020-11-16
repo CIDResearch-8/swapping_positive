@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+        <title>swapping_positeve</title>
+        <link rel = "stylesheet" href="css/style_sample.css">
+        <script>
+            var _window = $(window);
+
+            _window.on('load',(function(e){
+            var hei = $('.name').height() + $('.content').height();
+            if (50 < hei) {
+                $('.block').css('height', hei + 'px');
+            }
+            else {
+                $('.block').css('height', 'auto');
+            }
+            }));
+        </script>
+    </head>
+    <body>
+        <div class = "timeline">
+            <div class = "block">
+                <div class = "icon"><img src = "img/icon_1.jpg"></div>
+                <div class = "name">なまえええええええ！</div>
+                <div class = "time">1時間前</div>
+                <p class = "content">ねむーい！</p>
+            </div>
+            <div class = "block">
+                <div class = "icon"><img src = ""></div>
+                <div class = "name">なまえ</div>
+                <div class = "time">1時間前</div>
+                <p class = "content">中々上手く行かないな(´・ω・｀)
+                ああああああああああああああああああああああああああああああああああああああああああ</p>
+            </div>
+        </div>
+    </body>
+</html>
