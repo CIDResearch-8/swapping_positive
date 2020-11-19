@@ -14,16 +14,10 @@ public class AccountDao {
 
     public Account findByNo(String username) {
         Map<String, Object> map = jdbcTemplate
-                .queryForMap("SELECT * FROM account WHERE user_id = ?", username);
+                .queryForMap("SELECT * FROM account WHERE username = ?", username);
 
-        //user_idが一致すればその行を返す
-        if (!map.isEmpty()) {
-            return (Account) map.get(username);
-        }
-        //なければnullを返す
-        else {
-            return null;
-        }
+        //usernameが一致すればその行を返す(なければnullを返す)
+        return (Account) map.get(username);
     }
     
     public Account authAccount(String username, String password) {
@@ -31,12 +25,8 @@ public class AccountDao {
                 .queryForMap("SELECT * FROM account WHERE user_id = ?", username);
 
         //パスワードの確認
-        if (!map.isEmpty() && map.get("password").equals(password)) {
-            return (Account) map.get(username);
-        }
         //パスワードが違う/ユーザー情報がなければnullを返す
-        else {
-            return null;
-        }
+        return map.get("password").equals(password) ?
+                    (Account) map.get(username) : null;
     }
 }
