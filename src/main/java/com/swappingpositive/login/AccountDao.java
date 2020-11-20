@@ -12,21 +12,21 @@ public class AccountDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Account findByNo(String username) {
+    public Account findById(String userId) {
         Map<String, Object> map = jdbcTemplate
-                .queryForMap("SELECT * FROM account WHERE username = ?", username);
+                .queryForMap("SELECT * FROM account WHERE username = ?", userId);
 
         //usernameが一致すればその行を返す(なければnullを返す)
-        return (Account) map.get(username);
+        return (Account) map.get(userId);
     }
     
-    public Account authAccount(String username, String password) {
+    public Account authAccount(String userId, String password) {
         Map<String, Object> map = jdbcTemplate
-                .queryForMap("SELECT * FROM account WHERE user_id = ?", username);
+                .queryForMap("SELECT * FROM account WHERE user_id = ?", userId);
 
         //パスワードの確認
         //パスワードが違う/ユーザー情報がなければnullを返す
         return map.get("password").equals(password) ?
-                    (Account) map.get(username) : null;
+                    (Account) map.get(userId) : null;
     }
 }

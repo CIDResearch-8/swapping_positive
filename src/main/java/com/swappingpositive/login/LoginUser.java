@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.User;
 
 public class LoginUser extends User {
     @Getter @Setter
-    private Long userId;
+    private String userId;
 
     @Getter @Setter
     private String username;

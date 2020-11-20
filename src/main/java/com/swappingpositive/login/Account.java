@@ -5,7 +5,7 @@ import lombok.Setter;
 
 public class Account {
     @Getter @Setter
-    private Long userId;
+    private String userId;
 
     @Getter @Setter
     private String username;

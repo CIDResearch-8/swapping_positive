@@ -16,7 +16,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String userId)
             throws UsernameNotFoundException {
 
-        Account account = accountDao.findByNo(userId);
+        Account account = accountDao.findById(userId);
         if (account == null) {
             throw new UsernameNotFoundException("ユーザーが見つかりませんでした。");
         }

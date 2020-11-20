@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     // ログイン失敗時の遷移先
                     .failureUrl("/login-error")
                     // ログインフォームで使用するユーザー名のinput name
-                    .usernameParameter("empNo")
+                    .usernameParameter("userId")
                     // ログインフォームで使用するパスワードのinput name
                     .passwordParameter("password")
                     .permitAll()
