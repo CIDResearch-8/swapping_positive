@@ -41,7 +41,6 @@ body{
     position: absolute;
     top: 0px;
     left: 55px;
-    border: 1px solid;
 }
 
 .time{
@@ -50,10 +49,9 @@ body{
     left: 620px;
 }
 
-.content{
+.text{
     margin: 5px;
     position: absolute;
     top: 20px;
     left: 50px;
-    border: 1px solid;
 }
