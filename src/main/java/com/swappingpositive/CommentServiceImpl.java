@@ -14,6 +14,18 @@ public class CommentServiceImpl implements CommentService {
     }
     @Override
     public void save(Comment comment) {
-        dao.create(comment);
+        dao.create(comment);//ツイートをSQLに登録
+    }
+    @Override
+    public List<Comment> getTimeline() {
+        return dao.getTimeline();//タイムライン表示
+    }
+    @Override
+    public Comment getUser(int userID) {
+        return dao.getUser(userID);//ユーザーページのツイート
+    }
+    @Override
+    public void delete(int userID) {
+        dao.delete(userID);//ツイートの削除
     }
 }
