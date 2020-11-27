@@ -13,72 +13,68 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
+@Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Configuration
-    public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
 
-        @Autowired
-        private UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private AuthenticationProviderImpl authenticationProvider;
 
-        @Autowired
-        private AuthenticationProviderImpl authenticationProvider;
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http
-                    .headers()
-                        .frameOptions()
-                            .and()
-                        .xssProtection()
-                            .and()
-                        .cacheControl()
-                            .and()
-                        .contentTypeOptions()
-                            .and()
-                        .cacheControl()
-                            .and()
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .headers()
+                    .frameOptions()
                         .and()
-                    .authorizeRequests()
-                        // 認証対象外のパスを設定する
-                        .antMatchers("/", "/login", "/registration/**", "/css/**", "/js/**", "/img/**")
-                        // 上記パスへのアクセスを許可する
-                        .permitAll()
-                        // その他のリクエストは認証が必要
-                        .anyRequest().authenticated()
+                    .xssProtection()
                         .and()
-                    .formLogin()
-                        // ログインフォームのパス
-                        .loginPage("/")
-                        // ログイン処理のパス
-                        .loginProcessingUrl("/login")
-                        // ログイン成功時の遷移先
-                        .defaultSuccessUrl("/menu")
-                        // ログイン失敗時の遷移先
-                        .failureUrl("/login-error")
-                        // ログインフォームで使用するユーザー名のinput name
-                        .usernameParameter("userId")
-                        // ログインフォームで使用するパスワードのinput name
-                        .passwordParameter("password")
-                        .permitAll()
+                    .cacheControl()
                         .and()
-                    .rememberMe()
-                        .tokenValiditySeconds(86400) // 1ヶ月（秒）
+                    .contentTypeOptions()
                         .and()
-                    .logout()
-                        // ログアウトがパス(GET)の場合設定する（CSRF対応）
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        // ログアウトがPOSTの場合設定する
-                        //.logoutUrl("/logout")
-                        // ログアウト後の遷移先
-                        .logoutSuccessUrl("/")
-                        // セッションを破棄する
-                        .invalidateHttpSession(true)
-                        // ログアウト時に削除するクッキー名
-                        .deleteCookies("JSESSIONID", "remember-me")
-                        .permitAll();
-        }
+                    .and()
+                .authorizeRequests()
+                    // 認証対象外のパスを設定する
+                    .antMatchers("/", "/registration/**", "/css/**", "/js/**", "/img/**")
+                    // 上記パスへのアクセスを許可する
+                    .permitAll()
+                    // その他のリクエストは認証が必要
+                    .anyRequest().authenticated()
+                    .and()
+                .formLogin()
+                    // ログインフォームのパス
+                    .loginPage("/login")
+                    // ログイン処理のパス
+                    .loginProcessingUrl("/login")
+                    // ログイン成功時の遷移先
+                    .defaultSuccessUrl("/user/home")
+                    // ログイン失敗時の遷移先
+                    .failureUrl("/login-error")
+                    // ログインフォームで使用するユーザー名のinput name
+                    .usernameParameter("userId")
+                    // ログインフォームで使用するパスワードのinput name
+                    .passwordParameter("password")
+                    .permitAll()
+                    .and()
+                .rememberMe()
+                    .tokenValiditySeconds(86400) // 1ヶ月（秒）
+                    .and()
+                .logout()
+                    // ログアウトがパス(GET)の場合設定する（CSRF対応）
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    // ログアウトがPOSTの場合設定する
+                    //.logoutUrl("/logout")
+                    // ログアウト後の遷移先
+                    .logoutSuccessUrl("/")
+                    // セッションを破棄する
+                    .invalidateHttpSession(true)
+                    // ログアウト時に削除するクッキー名
+                    .deleteCookies("JSESSIONID", "remember-me")
+                    .permitAll();
+    }
 
         @Autowired
         public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -87,5 +83,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .authenticationProvider(authenticationProvider)
                     .userDetailsService(userDetailsService);
         }
-    }
 }
