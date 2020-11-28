@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -16,13 +18,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private AccountDao accountDao;
 
     @Override
-    public UserDetails loadUserByUsername(String userId)
-            throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 
-        Account account = accountDao.findById(userId);
-        if (account == null) {
-            throw new UsernameNotFoundException("ユーザーが見つかりませんでした。");
-        }
+        Account account = Optional.ofNullable(accountDao.findById(userId))
+                .orElseThrow(() -> new UsernameNotFoundException("ユーザーが見つかりませんでした。"));
 
         return new LoginUser(account);
     }

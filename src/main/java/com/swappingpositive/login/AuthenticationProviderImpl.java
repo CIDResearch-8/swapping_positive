@@ -11,6 +11,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @Component
 public class AuthenticationProviderImpl implements AuthenticationProvider {
@@ -27,16 +29,13 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
         String id = auth.getName();
         String password = auth.getCredentials().toString();
 
-        if ("".equals(id) || "".equals(password)) {
+        if (id.isEmpty() || password.isEmpty()) {
             // 例外はSpringSecurityにあったものを適当に使用
             throw new AuthenticationCredentialsNotFoundException("ログイン情報に不備があります。");
         }
 
-        Account account = accountDao.authAccount(id, password);
-        if (account == null) {
-            // 例外はSpringSecurityにあったものを適当に使用
-            throw new AuthenticationCredentialsNotFoundException("ログイン情報が存在しません。");
-        }
+        Account account = Optional.ofNullable(accountDao.authAccount(id, password))
+                .orElseThrow(() -> new AuthenticationCredentialsNotFoundException("ログイン情報が存在しません。"));
 
         return new UsernamePasswordAuthenticationToken(new LoginUser(account), password, auth.getAuthorities());
     }
