@@ -1,10 +1,11 @@
 package com.swappingpositive.login;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 public class Account {
-    @Getter @Setter
+    @Getter @Setter @NonNull
     private String userId;
 
     @Getter @Setter
@@ -13,6 +14,6 @@ public class Account {
     @Getter @Setter
     private String email;
 
-    @Getter @Setter
+    @Getter @Setter @NonNull
     private String password;
 }

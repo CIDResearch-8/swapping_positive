@@ -1,13 +1,18 @@
 package com.swappingpositive.login;
 
 import java.util.*;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 public class LoginUser extends User {
-    @Getter @Setter
+
+    private static final long serialVersionUID = 1L;
+
+    @Getter @Setter @NonNull
     private String userId;
 
     @Getter @Setter
@@ -16,7 +21,7 @@ public class LoginUser extends User {
     @Getter @Setter
     private String email;
 
-    @Getter @Setter
+    @Getter @Setter @NonNull
     private String password;
 
     public LoginUser(Account account) {
