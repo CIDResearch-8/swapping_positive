@@ -21,11 +21,11 @@ public class CommentServiceImpl implements CommentService {
         return dao.getTimeline();//タイムライン表示
     }
     @Override
-    public Comment getUser(int userID) {
-        return dao.getUser(userID);//ユーザーページのツイート
+    public Comment getUser(int user_id) {
+        return dao.getUser(user_id);//ユーザーページのツイート
     }
     @Override
-    public void delete(int userID) {
-        dao.delete(userID);//ツイートの削除
+    public void delete(int user_id) {
+        dao.delete(user_id);//ツイートの削除
     }
 }

@@ -21,20 +21,20 @@ public class CommentDaoImpl implements CommentDao {
 
         //Timestampオブジェクトの値
         System.out.println(timestamp.toString());
-        jdbcTemplate.update("INSERT INTO comment (userID, date, massage) VALUES (?, ?, ?)",
-                comment.getUserID(), timestamp.toString(), comment.getmassage());
+        jdbcTemplate.update("INSERT INTO comment (user_id, date, message) VALUES (?, ?, ?)",
+                comment.getUserID(), timestamp.toString(), comment.getmessage());
     }
     //ユーザーページのツイート情報
     @Override
-    public Comment getUser(int userID) {
-        Map<String, Object> map = jdbcTemplate.queryForMap("SELECT * FROM comment WHERE userID = ?", userID);
+    public Comment getUser(int user_id) {
+        Map<String, Object> map = jdbcTemplate.queryForMap("SELECT * FROM comment WHERE user_id = ?", user_id);
         Comment comment = new Comment();
 
-        comment.setUserId((int) map.get("userID"));
+        comment.setUserId((int) map.get("user_id"));
 
         comment.setDate(((Timestamp) map.get("date")).toLocalDateTime());
 
-        comment.setMassage((String) map.get("massage"));
+        comment.setMessage((String) map.get("message"));
 
         return comment;
     }
@@ -44,9 +44,9 @@ public class CommentDaoImpl implements CommentDao {
         List<Comment> comments = new ArrayList<>();
         for (Map<String, Object> row : jdbcTemplate.queryForList("SELECT * FROM comment ORDER BY id")) {
             Comment comment = new Comment();
-            comment.setUserID((int) row.get("userID"));
+            comment.setUserID((int) row.get("user_id"));
             comment.setDate(((Timestamp) row.get("date")).toLocalDateTime());
-            comment.setMassage((String) row.get("massage"));
+            comment.setMessage((String) row.get("message"));
             comments.add(comment);
         }
         return comments;
@@ -54,8 +54,8 @@ public class CommentDaoImpl implements CommentDao {
 
     //ツイートの削除
     @Override
-    public void delete(int userID) {
-        jdbcTemplate.update("DELETE  FROM comment WHERE userID = ?", userID);
+    public void delete(int user_id) {
+        jdbcTemplate.update("DELETE  FROM comment WHERE user_id = ?", user_id);
     }
 
 }
