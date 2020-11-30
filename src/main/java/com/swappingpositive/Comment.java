@@ -1,31 +1,12 @@
 package com.swappingpositive;
-
+import lombok.*;
 public class Comment {
+    @Getter @Setter
     private String message;
+
+    @Getter @Setter
     private String userID;
+
+    @Getter @Setter
     private int date;
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public int getDate() {
-        return date;
-    }
-
-    public void setDate(int date) {
-        this.date = date;
-    }
 }
