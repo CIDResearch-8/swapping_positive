@@ -1,11 +1,21 @@
 package com.swappingpositive.login;
 
+import lombok.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LoginController {
+
+    @Autowired
+    AccountService service;
+
     @RequestMapping("/login")
     public String login(Model model) {
         model.addAttribute(new LoginForm());
@@ -30,4 +40,22 @@ public class LoginController {
         model.addAttribute("loginError", true);
         return "login-form";
     }
+
+    @GetMapping("/resister")
+    public String resister(Model model) {
+        model.addAttribute("resisterForm", new ResisterForm());
+        return "/resister";
+    }
+
+    @PostMapping("/resister")
+    public String resisterNew(@Validated ResisterForm resisterForm, BindingResult result) {
+        if (result.hasErrors()) {
+            return "/resister";
+        }
+        else {
+            service.createAccount(resisterForm);
+            return "redirect:/user/home";
+        }
+    }
+
 }

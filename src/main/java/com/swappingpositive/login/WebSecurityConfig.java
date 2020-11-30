@@ -8,20 +8,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private AccountService userDetailsService;
 
     @Autowired
     private AuthenticationProviderImpl authenticationProvider;
@@ -41,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .authorizeRequests()
                     // 認証対象外のパスを設定する
-                    .antMatchers("/", "/h2-console/**","/registration/**", "/css/**", "/js/**", "/img/**")
+                    .antMatchers("/", "/resister", "/h2-console/**","/registration/**", "/css/**", "/js/**", "/img/**")
                     // 上記パスへのアクセスを許可する
                     .permitAll()
                     // その他のリクエストは認証が必要
