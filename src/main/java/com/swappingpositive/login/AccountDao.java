@@ -30,22 +30,25 @@ public class AccountDao {
 
         //userIdが一致すればその行を返す(なければnullを返す)
         return list.stream()
-                .filter(e -> e.getUserId().equals(userId))
                 .findFirst()
                     .orElse(null);
     }
     
     public Account authAccount(String userId, String password) {
-        List<Account> list = jdbcTemplate.
-                query("SELECT * FROM account WHERE user_id = ?",
-                        new BeanPropertyRowMapper<>(Account.class), userId);
-
+        Account account = findById(userId);
         //パスワードの確認
         //パスワードが違う/ユーザー情報がなければnullを返す
-        return list.stream()
-                .filter(e -> e.getUserId().equals(userId) &&
-                        passwordEncoder.matches(password, e.getPassword()))
-                .findFirst()
-                    .orElse(null);
+        if (account == null) {
+            return null;
+        }
+        return passwordEncoder.matches(password, account.getPassword()) ?
+                account : null;
+    }
+
+    public boolean create(Account account) {
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
+        jdbcTemplate.update("INSERT INTO account VALUES (?, ?, ?, ?)", account.toArray());
+
+        return findById(account.getUserId()) != null;
     }
 }

@@ -16,4 +16,8 @@ public class Account {
 
     @Getter @Setter @NonNull
     private String password;
+
+    public Object toArray() {
+        return new Object[] {getUserId(), getUsername(), getEmail(), getPassword()};
+    }
 }
