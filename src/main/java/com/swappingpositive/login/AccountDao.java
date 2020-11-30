@@ -34,7 +34,7 @@ public class AccountDao {
                     .orElse(null);
     }
     
-    public Account authAccount(String userId, String password) {
+    public Account authenticateAccount(String userId, String password) {
         Account account = findById(userId);
         //パスワードの確認
         //パスワードが違う/ユーザー情報がなければnullを返す
@@ -47,7 +47,11 @@ public class AccountDao {
 
     public boolean create(Account account) {
         account.setPassword(passwordEncoder.encode(account.getPassword()));
-        jdbcTemplate.update("INSERT INTO account VALUES (?, ?, ?, ?)", account.toArray());
+        jdbcTemplate.update("INSERT INTO account VALUES (?, ?, ?, ?)",
+                account.getUserId(),
+                account.getUsername(),
+                account.getPassword(),
+                account.getEmail());
 
         return findById(account.getUserId()) != null;
     }
