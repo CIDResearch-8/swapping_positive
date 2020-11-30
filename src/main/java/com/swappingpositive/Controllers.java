@@ -10,13 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @EnableAutoConfiguration
 public class Controllers {
 
-    //DB操作をするための処理
-    private final JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    public Controllers(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     // / -> index.html
     @RequestMapping("/")
