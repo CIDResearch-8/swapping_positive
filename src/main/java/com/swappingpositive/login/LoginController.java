@@ -44,18 +44,17 @@ public class LoginController {
     @GetMapping("/resister")
     public String resister(Model model) {
         model.addAttribute("resisterForm", new ResisterForm());
-        return "/resister";
+        return "resister";
     }
 
     @PostMapping("/resister")
     public String resisterNew(@Validated ResisterForm resisterForm, BindingResult result) {
         if (result.hasErrors()) {
-            return "/resister";
+            return "resister";
         }
-        else {
-            service.createAccount(resisterForm);
-            return "redirect:/user/home";
-        }
+
+        service.createAccount(resisterForm);
+        return "redirect:/user/home";
     }
 
 }
