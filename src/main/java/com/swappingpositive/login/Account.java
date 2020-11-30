@@ -17,7 +17,12 @@ public class Account {
     @Getter @Setter @NonNull
     private String password;
 
-    public Object toArray() {
-        return new Object[] {getUserId(), getUsername(), getEmail(), getPassword()};
+    public Account(String userId, String username, String email, String password) {
+        this.userId = userId;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+    public Account() {
     }
 }
