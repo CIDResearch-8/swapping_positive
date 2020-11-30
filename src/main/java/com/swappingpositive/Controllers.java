@@ -25,6 +25,15 @@ public class Controllers {
         return "login";
     }
 
+    //./confirmにアクセスし、フォームを送信した時
+    @GetMapping("/confirm")
+    //今回は受け取る側になる
+    public String confirm(Model model) {
+        //return文に書かれた値と同じ@PostMappingがある場合、そちらのメソッドに遷移する
+        return "result";
+    }
+
+
     // /user/ 以下はUsersクラスを介する
     @Controller
     @RequestMapping("/user")
