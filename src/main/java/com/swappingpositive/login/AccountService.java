@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @Component
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class AccountService implements UserDetailsService {
 
     @Autowired
     private AccountDao accountDao;
@@ -24,5 +24,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("ユーザーが見つかりませんでした。"));
 
         return new LoginUser(account);
+    }
+
+    public void createAccount(ResisterForm resisterForm) {
+
     }
 }
