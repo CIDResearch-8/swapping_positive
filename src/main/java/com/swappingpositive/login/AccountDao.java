@@ -50,11 +50,16 @@ public class AccountDao {
 
     public boolean create(Account account) {
         account.setPassword(passwordEncoder.encode(account.getPassword()));
-        jdbcTemplate.update("INSERT INTO account VALUES (?, ?, ?, ?)",
-                account.getUserId(),
-                account.getUsername(),
-                account.getPassword(),
-                account.getEmail());
-        return findById(account.getUserId()) != null;
+        try {
+            jdbcTemplate.update("INSERT INTO account VALUES (?, ?, ?, ?)",
+                    account.getUserId(),
+                    account.getUsername(),
+                    account.getPassword(),
+                    account.getEmail());
+        }
+        catch (DuplicateKeyException e) {
+            return false;
+        }
+        return true;
     }
 }
