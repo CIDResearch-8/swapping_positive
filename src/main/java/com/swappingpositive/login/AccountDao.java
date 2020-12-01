@@ -75,6 +75,21 @@ public class AccountDao implements AbstractDao {
         return true;
     }
 
+    public boolean delete(Object id) {
+        //そもそもAccountインスタンスでない場合はfalseを返す
+        if (!(id instanceof String)) {
+            return false;
+        }
+        String userId = (String) id;
+
+        jdbcTemplate.update("DELETE FROM account WHERE user_id = ?", userId);
+
+        if (getById(userId) != null) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public List<Account> getAll() {
         return jdbcTemplate.query("SELECT * FROM account", new BeanPropertyRowMapper<>(Account.class));
