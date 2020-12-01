@@ -41,19 +41,19 @@ public class LoginController {
         return "login-form";
     }
 
-    @GetMapping("/resister")
-    public String resister(Model model) {
-        model.addAttribute("resisterForm", new ResisterForm());
-        return "resister";
+    @GetMapping("/register")
+    public String register(Model model) {
+        model.addAttribute("registerForm", new RegisterForm());
+        return "register";
     }
 
-    @PostMapping("/resister")
-    public String resisterNew(@Validated ResisterForm resisterForm, BindingResult result) {
+    @PostMapping("/register")
+    public String registerNew(@Validated RegisterForm registerForm, BindingResult result) {
         if (result.hasErrors()) {
-            return "resister";
+            return "register";
         }
 
-        service.createAccount(resisterForm);
+        service.createAccount(registerForm);
         return "redirect:/user/home";
     }
 

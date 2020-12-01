@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
-public class ResisterForm {
+public class RegisterForm {
     @Getter @Setter @NonNull
     private String userId;
 

@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .authorizeRequests()
                     // 認証対象外のパスを設定する
-                    .antMatchers("/", "/resister", "/h2-console/**","/registration/**", "/css/**", "/js/**", "/img/**")
+                    .antMatchers("/", "/register", "/h2-console/**","/registration/**", "/css/**", "/js/**", "/img/**")
                     // 上記パスへのアクセスを許可する
                     .permitAll()
                     // その他のリクエストは認証が必要

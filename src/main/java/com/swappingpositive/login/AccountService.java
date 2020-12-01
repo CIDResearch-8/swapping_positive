@@ -2,6 +2,7 @@ package com.swappingpositive.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,15 +30,16 @@ public class AccountService implements UserDetailsService {
         return new LoginUser(account);
     }
 
-    public void createAccount(ResisterForm resisterForm) {
-        if (!resisterForm.getUserId().matches("^[a-zA-Z][a-zA-Z0-9_-]*")) {
+    public void createAccount(RegisterForm registerForm) {
+        if (!registerForm.getUserId().matches("^[a-zA-Z][a-zA-Z0-9_-]*")) {
             throw new IllegalArgumentException("ユーザーIDが不適切です");
         }
-
-        accountDao.create(new Account(resisterForm.getUserId(),
-                resisterForm.getUsername(),
-                resisterForm.getEmail(),
-                resisterForm.getPassword()));
-        System.out.println(resisterForm.getUserId() + resisterForm.getPassword());
+        if (!accountDao.create(new Account(registerForm.getUserId(),
+                registerForm.getUsername(),
+                registerForm.getEmail(),
+                registerForm.getPassword()))) {
+            throw new DuplicateKeyException("このユーザーIDは既に存在しています");
+        }
+        System.out.println(registerForm.getUserId() + registerForm.getPassword());
     }
 }

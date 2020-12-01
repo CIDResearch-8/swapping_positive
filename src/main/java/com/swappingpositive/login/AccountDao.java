@@ -1,9 +1,12 @@
 package com.swappingpositive.login;
 
+import java.sql.BatchUpdateException;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +55,6 @@ public class AccountDao {
                 account.getUsername(),
                 account.getPassword(),
                 account.getEmail());
-
         return findById(account.getUserId()) != null;
     }
 }
