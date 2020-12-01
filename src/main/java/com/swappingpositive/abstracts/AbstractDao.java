@@ -10,6 +10,14 @@ public interface AbstractDao<T> {
      */
     boolean insert(T element);
 
+
+    /**
+     * idを用いてテーブルから一致した行を削除します。
+     * @param id テーブルのカラム名で削除したいid
+     * @return 削除できたかどうか
+     */
+    boolean delete(Object id);
+
     /**
      * idを用いてテーブルを検索します。通常、idはプライマリキーのため、
      * 必ず一つかnullを返す必要があります。
