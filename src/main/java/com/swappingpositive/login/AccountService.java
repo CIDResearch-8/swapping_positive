@@ -20,7 +20,7 @@ public class AccountService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 
-        Account account = Optional.ofNullable(accountDao.getById(userId))
+        Account account = Optional.ofNullable(accountDao.selectByPrimaryKey(userId))
                 .orElseThrow(() -> new UsernameNotFoundException("ユーザーが見つかりませんでした。"));
 
         return new LoginUser(account);
@@ -37,5 +37,6 @@ public class AccountService implements UserDetailsService {
             throw new DuplicateKeyException("このユーザーIDは既に存在しています");
         }
         System.out.println(registerForm.getUserId() + registerForm.getPassword());
+        accountDao.insert(null);
     }
 }
