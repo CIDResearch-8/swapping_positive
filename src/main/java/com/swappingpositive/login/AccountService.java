@@ -19,7 +19,6 @@ public class AccountService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-
         Account account = Optional.ofNullable(accountDao.selectByPrimaryKey(userId))
                 .orElseThrow(() -> new UsernameNotFoundException("ユーザーが見つかりませんでした。"));
 
@@ -27,24 +26,25 @@ public class AccountService implements UserDetailsService {
     }
 
     public void createAccount(RegisterForm registerForm) {
+        //空文字をnullに変換する
+        registerForm.emptyToNullField();
+
+        //userIdが英数字、"_"、"-"でなかった場合、例外をスロー
         if (!registerForm.getUserId().matches("^[a-zA-Z][a-zA-Z0-9_-]*")) {
             throw new IllegalArgumentException("ユーザーIDが不適切です");
         }
+
+        //正常に挿入できなかった場合、例外をスロー
         if (!accountDao.insert(new Account(registerForm.getUserId(),
                 registerForm.getUsername(),
                 registerForm.getEmail(),
                 registerForm.getPassword()))) {
             throw new DuplicateKeyException("このユーザーIDは既に存在しています");
         }
-        System.out.println(registerForm.getUserId() + registerForm.getPassword());
     }
 
     public void deleteAccount(String userId) {
-        if (!userId.matches("^[a-zA-Z][a-zA-Z0-9_-]*")) {
-            throw new IllegalArgumentException("ユーザーIDが不適切です");
-        }
-
-        if (accountDao.delete(userId)) {
+        if (!accountDao.delete(userId)) {
             throw new UsernameNotFoundException("ユーザーが存在しません");
         }
     }
