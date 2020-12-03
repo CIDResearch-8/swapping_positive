@@ -37,6 +37,15 @@ public class AccountService implements UserDetailsService {
             throw new DuplicateKeyException("このユーザーIDは既に存在しています");
         }
         System.out.println(registerForm.getUserId() + registerForm.getPassword());
-        accountDao.insert(null);
+    }
+
+    public void deleteAccount(String userId) {
+        if (!userId.matches("^[a-zA-Z][a-zA-Z0-9_-]*")) {
+            throw new IllegalArgumentException("ユーザーIDが不適切です");
+        }
+
+        if (accountDao.delete(userId)) {
+            throw new UsernameNotFoundException("ユーザーが存在しません");
+        }
     }
 }
