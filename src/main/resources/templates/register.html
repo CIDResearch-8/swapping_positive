@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Member</title>
+    <title>Register</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" media="all" th:href="@{/css/style.css}"/>
 
@@ -9,7 +9,9 @@
 
 <body>
 <div class="container">
-    <h2>Resister</h2>
+    <h2>Register</h2>
+
+    <p th:if="${registerError}">ユーザーID、パスワードが空です。</p>
 
     <form action="#" th:action="@{''}" th:object="${registerForm}" class="form-horizontal" method="post">
 

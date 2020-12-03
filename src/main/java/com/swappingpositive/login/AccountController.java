@@ -55,8 +55,20 @@ public class AccountController {
             return "register";
         }
 
-        service.createAccount(registerForm);
+        try {
+            service.createAccount(registerForm);
+        }
+        catch (NullPointerException e) {
+            return "redirect:/register-error";
+        }
         return "redirect:/user/home";
+    }
+
+    @RequestMapping("/register-error")
+    public String registerError(Model model) {
+        model.addAttribute("registerError", true);
+        model.addAttribute("registerForm", new RegisterForm());
+        return "register";
     }
 
     @RequestMapping("/{userId}/delete")
