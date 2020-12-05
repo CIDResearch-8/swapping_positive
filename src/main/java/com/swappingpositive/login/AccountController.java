@@ -18,6 +18,7 @@ public class AccountController {
     @Autowired
     AccountService service;
 
+    //フォームの入力を受け取るためにLoginFormインスタンスを渡す
     @RequestMapping("/login")
     public String login(Model model) {
         model.addAttribute(new LoginForm());
@@ -43,12 +44,14 @@ public class AccountController {
         return "login-form";
     }
 
+    //フォームの入力を受け取るためにRegisterFormインスタンスを渡す
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("registerForm", new RegisterForm());
         return "register";
     }
 
+    //アカウント作成するための処理
     @PostMapping("/register")
     public String registerNew(@Validated RegisterForm registerForm, BindingResult result) {
         if (result.hasErrors()) {
@@ -64,13 +67,14 @@ public class AccountController {
         return "redirect:/user/home";
     }
 
+    //アカウントを作成出来なかった時の処理
     @RequestMapping("/register-error")
     public String registerError(Model model) {
         model.addAttribute("registerError", true);
-        model.addAttribute("registerForm", new RegisterForm());
-        return "register";
+        return register(model);
     }
 
+    //ユーザーごとにアカウントを削除する処理
     @RequestMapping("/{userId}/delete")
     public String deleteAccount(@PathVariable String userId, @AuthenticationPrincipal LoginUser loginUser) {
         if (!loginUser.getUserId().equals(userId)) {

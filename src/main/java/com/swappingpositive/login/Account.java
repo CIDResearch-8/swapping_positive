@@ -23,6 +23,8 @@ public class Account {
         this.email = email;
         this.password = password;
     }
+
+    //デフォルトコンストラクタが無いと正常に機能しない
     public Account() {
     }
 }
