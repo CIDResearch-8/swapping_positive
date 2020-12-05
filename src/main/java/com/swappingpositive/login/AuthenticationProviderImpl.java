@@ -34,7 +34,7 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
             throw new AuthenticationCredentialsNotFoundException("ログイン情報に不備があります。");
         }
 
-        Account account = Optional.ofNullable(accountDao.authAccount(id, password))
+        Account account = Optional.ofNullable(accountDao.authenticateAccount(id, password))
                 .orElseThrow(() -> new AuthenticationCredentialsNotFoundException("ログイン情報が存在しません。"));
 
         return new UsernamePasswordAuthenticationToken(new LoginUser(account), password, auth.getAuthorities());

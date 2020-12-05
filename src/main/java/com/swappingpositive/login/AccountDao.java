@@ -1,51 +1,85 @@
 package com.swappingpositive.login;
 
 import java.util.*;
+
+import com.swappingpositive.fizzy.Dao;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AccountDao {
+public class AccountDao implements Dao<Account> {
     @Autowired
     protected JdbcTemplate jdbcTemplate;
 
     @Autowired
     protected PasswordEncoder passwordEncoder;
 
+    @Override
+    public List<Account> selectByColumn(String columnName, Object value) {
+        final String FORMATTED_COLUMN_NAME = String.format("%s", columnName);
+        return jdbcTemplate
+                .query("SELECT * FROM account WHERE " + FORMATTED_COLUMN_NAME + " = ?",
+                        //BeanPropertyRowMapperで自動的に
+                        //データベースのカラムとJavaのフィールドを一致させる
+                        new BeanPropertyRowMapper<>(Account.class), value);
+    }
+
     /**
      * userIdをもとに、accountテーブルからuserIdと同じアカウントを探査し、最初に見つけたものを返します。
      * なお、user_idは主キーのため、必ず一つが返ってきます。
-     * @param userId 探したいユーザーID
+     * @param key 探したいユーザーID
      * @return userIdと一致したアカウント　なければnull
      */
-    public Account findById(String userId) {
-        List<Account> list = jdbcTemplate
-                .query("SELECT * FROM account WHERE user_id = ?",
-                        //BeanPropertyRowMapperで自動的に
-                        //データベースのカラムとJavaのフィールドを一致させる
-                        new BeanPropertyRowMapper<>(Account.class), userId);
+    @Override
+    public Account selectByPrimaryKey(Object key) {
+        List<Account> list = selectByColumn("user_id", key);
 
         //userIdが一致すればその行を返す(なければnullを返す)
         return list.stream()
-                .filter(e -> e.getUserId().equals(userId))
                 .findFirst()
                     .orElse(null);
     }
-    
-    public Account authAccount(String userId, String password) {
-        List<Account> list = jdbcTemplate.
-                query("SELECT * FROM account WHERE user_id = ?",
-                        new BeanPropertyRowMapper<>(Account.class), userId);
+
+    public Account authenticateAccount(String userId, String password) {
+        Account account = selectByPrimaryKey(userId);
 
         //パスワードの確認
         //パスワードが違う/ユーザー情報がなければnullを返す
-        return list.stream()
-                .filter(e -> e.getUserId().equals(userId) &&
-                        passwordEncoder.matches(password, e.getPassword()))
-                .findFirst()
-                    .orElse(null);
+        if (account == null) {
+            return null;
+        }
+        return passwordEncoder.matches(password, account.getPassword()) ?
+                account : null;
+    }
+
+    public boolean insert(@NonNull Account account) {
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
+        try {
+            jdbcTemplate.update("INSERT INTO account VALUES (?, ?, ?, ?)",
+                    account.getUserId(),
+                    account.getUsername(),
+                    account.getPassword(),
+                    account.getEmail());
+        }
+        catch (DuplicateKeyException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean delete(Object id) {
+        jdbcTemplate.update("DELETE FROM account WHERE user_id = ?", id);
+
+        return selectByPrimaryKey(id) == null;
+    }
+
+    @Override
+    public List<Account> selectAll() {
+        return jdbcTemplate.query("SELECT * FROM account", new BeanPropertyRowMapper<>(Account.class));
     }
 }
