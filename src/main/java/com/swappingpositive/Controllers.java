@@ -21,12 +21,6 @@ public class Controllers {
         return "index";
     }
 
-    // /login -> login.html
-    @RequestMapping("/login")
-    public String login() {
-        return "login";
-    }
-
     //./confirmにアクセスし、フォームを送信した時
     @GetMapping("/confirm")
     //今回は受け取る側になる
@@ -34,7 +28,6 @@ public class Controllers {
         //return文に書かれた値と同じ@PostMappingがある場合、そちらのメソッドに遷移する
         return "result";
     }
-
 
     // /user/ 以下はUsersクラスを介する
     @Controller

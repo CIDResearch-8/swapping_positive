@@ -12,12 +12,8 @@ import java.util.*;
 
 public class CommentDao implements Dao<Comment> {
 
-    private JdbcTemplate jdbcTemplate;
-
     @Autowired
-    public CommentDao(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public boolean insert(Comment comment) {
@@ -64,8 +60,6 @@ public class CommentDao implements Dao<Comment> {
     }
 
     public List<Comment> selectUserComment(String userId) {
-        return jdbcTemplate.query("SELECT * FROM comment WHERE user_id == ?", new BeanPropertyRowMapper<>(Comment.class), userId);
+        return jdbcTemplate.query("SELECT * FROM comment WHERE user_id = ?", new BeanPropertyRowMapper<>(Comment.class), userId);
     }
-
-
 }
