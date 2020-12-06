@@ -18,8 +18,7 @@ public class CommentDao implements Dao<Comment> {
     @Override
     public boolean insert(Comment comment) {
         try {
-            jdbcTemplate.update("INSERT INTO comment VALUES (?, ?, ?, ?)",
-                    comment.getCommentId(),
+            jdbcTemplate.update("INSERT INTO comment(user_id, date, comment) VALUES ( ?, ?, ?)",
                     comment.getUserId(),
                     comment.getDate(),
                     comment.getComment());
@@ -31,7 +30,7 @@ public class CommentDao implements Dao<Comment> {
 
     @Override
     public boolean delete(Object commentId) {
-        jdbcTemplate.update("DELETE FROM comment WHERE commant_id = ?", commentId);
+        jdbcTemplate.update("DELETE FROM comment WHERE comment_id = ?", commentId);
         return selectByPrimaryKey(commentId) == null;
     }
 

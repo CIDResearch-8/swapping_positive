@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @EnableAutoConfiguration
 public class Controllers {
 
-    @Autowired//Serviceクラスのインスタンスを自動生成
-    private CommentService service;
-
     // / -> index.html
     @RequestMapping("/")
     public String index() {
