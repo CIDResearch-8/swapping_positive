@@ -9,15 +9,14 @@ import java.util.*;
 @Service
 public class CommentService {
 
+    @Autowired
     private CommentDao dao;
 
-    @Autowired
-    public CommentService(CommentDao dao) {
-        this.dao = dao;
-    }
-
-    public void save(Comment comment) {
-        dao.insert(comment);//ツイートをSQLに登録
+    public void save(CommentForm form) {
+        //ツイートをSQLに登録
+        dao.insert(new Comment(
+                form.getUserId(),
+                form.getComment()));
     }
 
     public List<Comment> getTimeline() {
@@ -25,7 +24,7 @@ public class CommentService {
     }
 
     public Comment getUser(String userId) {
-        return dao.selectUserComment(userId);//ユーザーページのツイート
+        return new Comment();//ユーザーページのツイート
     }
 
     public void delete(int comment_id) {
