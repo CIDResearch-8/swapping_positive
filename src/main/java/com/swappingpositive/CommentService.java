@@ -12,10 +12,10 @@ public class CommentService {
     @Autowired
     private CommentDao dao;
 
-    public void save(CommentForm form) {
+    public void save(CommentForm form, String userId) {
         //ツイートをSQLに登録
         dao.insert(new Comment(
-                form.getUserId(),
+                userId,
                 form.getComment()));
     }
 

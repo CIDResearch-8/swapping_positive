@@ -1,6 +1,8 @@
 package com.swappingpositive;
 
+import com.swappingpositive.login.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,13 +26,13 @@ public class CommentController {
 
     //アカウント作成するための処理
     @PostMapping("/comment")
-    public String commentNew(@Validated CommentForm commentForm, BindingResult result) {
+    public String commentNew(@AuthenticationPrincipal LoginUser loginUser, @Validated CommentForm commentForm, BindingResult result) {
         if (result.hasErrors()) {
             return "comment-form";
         }
 
         try {
-            service.save(commentForm);
+            service.save(commentForm, loginUser.getUserId());
         }
         catch (NullPointerException e) {
             return "redirect:/comment-error";
