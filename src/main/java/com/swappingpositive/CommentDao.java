@@ -34,6 +34,10 @@ public class CommentDao implements Dao<Comment> {
         return selectByPrimaryKey(commentId) == null;
     }
 
+    public void deleteUserComment(String userId) {
+        jdbcTemplate.update("DELETE FROM comment WHERE user_id = ?", userId);
+    }
+
     @Override
     public Comment selectByPrimaryKey(Object commentId) {
         List<Comment> list = selectByColumn("comment_id", commentId);
