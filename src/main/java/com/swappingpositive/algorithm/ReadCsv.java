@@ -6,17 +6,12 @@ import java.io.File;
 import java.io.FileReader;
 
 class ReadCsv {
-    Map<String, String> readCsv(){
-        BufferedReader br = null;
+    public Map<String, String> readCsv(){
         String file_name = "Book_1.csv"; // 入力ファイル
         // データを格納するリスト
         Map<String, String> data = new HashMap<>();
 
-        try {
-            File file = new File(file_name);
-            br = new BufferedReader(new FileReader(file));
-            int index = 0;
-
+        try (BufferedReader br = new BufferedReader(new FileReader(file_name))){
             // readLineで一行ずつ読み込む
             String line;
             while ((line = br.readLine()) != null) {
@@ -26,13 +21,7 @@ class ReadCsv {
             }
 
         }catch (Exception e) {
-            System.out.println(e.getMessage());
-        }finally {
-            try {
-                br.close();
-            }catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            e.printStackTrace();
         }
         return data;
     }
