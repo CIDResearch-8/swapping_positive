@@ -15,6 +15,7 @@ public class CommentService {
     private CommentDao dao;
 
     public void save(CommentForm form, String userId) {
+        form.emptyToNullField();
         //ツイートをSQLに登録
         dao.insert(new Comment(
                 userId,
