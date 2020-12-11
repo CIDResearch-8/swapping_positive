@@ -22,11 +22,11 @@ public class CommentService {
                 form.getComment()));
     }
 
-    public List<Comment> getTimeline() {
+    public List<Comment> findAll() {
         return dao.selectAll();//タイムライン表示
     }
 
-    public Comment getUser(String userId) {
+    public Comment findByUser(String userId) {
         return new Comment();//ユーザーページのツイート
     }
 

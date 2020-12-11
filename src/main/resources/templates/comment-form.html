@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <title>comment</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" media="all" th:href="@{/css/style.css}"/>
-
+    <script th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" />
 </head>
 
 <body>
@@ -14,20 +14,25 @@
     <p th:if="${commentError}">ユーザーID、パスワードが空です。</p>
 
     <form action="#" th:action="@{''}" th:object="${commentForm}" class="form-horizontal" method="post">
-
+        <div id="text-control">
         <div class="form-group">
             <label th:for="comment">コメント</label>
-            <textarea class="form-control" th:field="*{comment}"
+            <textarea class="form-control" th:field="*{comment}" v-model="inputText"
                       th:class="${'form-control' + (#fields.hasErrors('comment') ? ' is-invalid' : '')}"
-            cols="50" rows="5" maxlength="500"></textarea>
-            <div class="invalid-feedback" th:errors="*{comment}">このコメントは投稿できません</div>
+                      maxlength="500" :class="{ 'is-invalid': isEmpty }"></textarea>
+            <div class="invalid-feedback">何か文字を入力してください</div>
         </div>
             
         <div class="form-group">
-            <button class="btn btn-outline-primary" type="submit">Save</button>
+            <button class="btn btn-outline-primary" type="submit" v-bind:disabled=isEmpty>Save</button>
+        </div>
         </div>
     </form>
 
 </div>
+
+<script th:src="@{/webjars/vue/2.6.11/vue.js}"></script>
+<script th:src="@{/js/text-length.js}"></script>
+
 </body>
 </html>
