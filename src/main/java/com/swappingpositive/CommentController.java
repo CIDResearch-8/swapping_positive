@@ -7,9 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 
 @Controller
 public class CommentController {
@@ -24,7 +24,7 @@ public class CommentController {
         return "comment-form";
     }
 
-    //アカウント作成するための処理
+    //コメント作成するための処理
     @PostMapping("/comment")
     public String commentNew(@AuthenticationPrincipal LoginUser loginUser, @Validated CommentForm commentForm, BindingResult result) {
         if (result.hasErrors()) {
@@ -40,10 +40,33 @@ public class CommentController {
         return "redirect:/user/home";
     }
 
-    //アカウントを作成出来なかった時の処理
+    //コメントを作成出来なかった時の処理
     @RequestMapping("/comment-error")
     public String commentError(Model model) {
         model.addAttribute("commentError", true);
         return comment(model);
+    }
+}
+
+@RestController
+class RestCommentController {
+    @Autowired
+    private CommentService service;
+
+    //フロントエンド側へuserIdを渡すための処理
+    @GetMapping("rest-api/login-user-id/get")
+    public String getLoginUserId(@AuthenticationPrincipal LoginUser loginUser) {
+        return loginUser.getUserId();
+    }
+
+    @PostMapping(value="rest-api/comment/post", produces = "application/json")
+    public void commentNew(@RequestBody String inputText) {
+        System.out.println(inputText);
+//        try {
+//            service.save(new CommentForm(form.getInputText()), form.getUserId());
+//        }
+//        catch (NullPointerException e) {
+//            e.printStackTrace();
+//        }
     }
 }

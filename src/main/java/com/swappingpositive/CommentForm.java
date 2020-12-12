@@ -8,6 +8,11 @@ public class CommentForm {
     @Getter @Setter @NonNull
     private String comment;
 
+    public CommentForm(String text) {
+        this.comment = text;
+    }
+    public CommentForm() {}
+
     //空文字をnullに変換する
     private String emptyToNull(String value) {
         return value.isEmpty() ? null : value;
