@@ -1,5 +1,6 @@
 package com.swappingpositive;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.swappingpositive.login.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -9,7 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+import java.util.Objects;
 
 @Controller
 public class CommentController {
@@ -61,12 +62,22 @@ class RestCommentController {
 
     @PostMapping(value="rest-api/comment/post", produces = "application/json")
     public void commentNew(@RequestBody String inputText) {
-        System.out.println(inputText);
-//        try {
-//            service.save(new CommentForm(form.getInputText()), form.getUserId());
-//        }
-//        catch (NullPointerException e) {
-//            e.printStackTrace();
-//        }
+        //Ajax通信で受け取ったjsonをオブジェクトに変換
+        ObjectMapper mapper = new ObjectMapper();
+        AjaxComment comment = null;
+        try {
+            comment = mapper.readValue(inputText, AjaxComment.class);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //受け取ったオブジェクトをコメントとしてデータべースに挿入
+        try {
+            service.save(new CommentForm(Objects.requireNonNull(comment).getInputText()), comment.getUserId());
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 }

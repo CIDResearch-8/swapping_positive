@@ -1,4 +1,6 @@
 package com.swappingpositive;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.sql.Timestamp;
@@ -24,4 +26,14 @@ public class Comment {
 
     public Comment() {}
 
+}
+
+class AjaxComment {
+    @JsonProperty("userId")
+    @Getter @Setter
+    private String userId;
+
+    @JsonProperty("inputText")
+    @Getter @Setter
+    private String inputText;
 }
