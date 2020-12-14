@@ -1,5 +1,6 @@
 package com.swappingpositive;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -21,5 +22,15 @@ public class CommentForm {
     public void emptyToNullField() {
         this.comment = emptyToNull(comment);
     }
+}
+
+class AjaxCommentForm {
+    @JsonProperty("userId")
+    @Getter @Setter
+    private String userId;
+
+    @JsonProperty("inputText")
+    @Getter @Setter
+    private String inputText;
 }
 

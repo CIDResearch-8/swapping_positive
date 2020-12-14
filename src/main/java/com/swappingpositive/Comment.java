@@ -28,12 +28,3 @@ public class Comment {
 
 }
 
-class AjaxComment {
-    @JsonProperty("userId")
-    @Getter @Setter
-    private String userId;
-
-    @JsonProperty("inputText")
-    @Getter @Setter
-    private String inputText;
-}

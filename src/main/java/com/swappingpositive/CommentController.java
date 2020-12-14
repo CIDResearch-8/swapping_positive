@@ -64,9 +64,9 @@ class RestCommentController {
     public void commentNew(@RequestBody String inputText) {
         //Ajax通信で受け取ったjsonをオブジェクトに変換
         ObjectMapper mapper = new ObjectMapper();
-        AjaxComment comment = null;
+        AjaxCommentForm comment = null;
         try {
-            comment = mapper.readValue(inputText, AjaxComment.class);
+            comment = mapper.readValue(inputText, AjaxCommentForm.class);
         }
         catch (Exception e) {
             e.printStackTrace();

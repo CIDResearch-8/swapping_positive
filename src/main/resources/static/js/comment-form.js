@@ -4,7 +4,7 @@ var app = new Vue({
         return {
             isButtonDisabled: false,
             inputText: "",
-            msg: "Welcome to Your Vue.js App"
+            userId: ""
         }
     },
     watch: {
@@ -21,7 +21,7 @@ var app = new Vue({
         axios
             .get('/rest-api/login-user-id/get')
             .then(response => {
-                this.msg = response.data;
+                this.userId = response.data;
                 console.log('getting user id');
             })
             .catch(err => {
@@ -33,10 +33,11 @@ var app = new Vue({
             axios
                 .post('/rest-api/comment/post', {
                     inputText: this.inputText,
-                    userId: this.msg
+                    userId: this.userId
                 })
                 .then(() => {
                     console.log("success submit");
+                    this.inputText = '';
                 })
                 .catch(err => {
                     console.log('submit error');
