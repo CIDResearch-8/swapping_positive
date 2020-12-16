@@ -30,18 +30,20 @@ var app = new Vue({
     },
     methods: {
         submit: function() {
-            axios
-                .post('/rest-api/comment/post', {
-                    inputText: this.inputText,
-                    userId: this.userId
-                })
-                .then(() => {
-                    console.log("success submit");
-                    this.inputText = '';
-                })
-                .catch(err => {
-                    console.log('submit error');
-                });
+            if (!this.isEmpty)  {
+                axios
+                    .post('/rest-api/comment/post', {
+                        inputText: this.inputText,
+                        userId: this.userId
+                    })
+                    .then(() => {
+                        console.log("success submit");
+                        this.inputText = '';
+                    })
+                    .catch(err => {
+                        console.log('submit error');
+                    });
+            }
         }
     }
 })
