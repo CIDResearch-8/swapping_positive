@@ -13,9 +13,13 @@
 
     <p th:if="${commentError}">ユーザーID、パスワードが空です。</p>
 
-    <div th:object=${comment}>
+    <div  th:object=${comment}>
         <p th:text="*{userId}"><br></p>
         <p th:text="*{comment}"><br></p>
+        <div th:if="${replies.size > 0}" th:each="reply : ${replies}">
+            <p th:text="${reply.userId}"><br></p>
+            <p th:text="${reply.comment}"><br></p>
+        </div>
     </div>
 
 </div>

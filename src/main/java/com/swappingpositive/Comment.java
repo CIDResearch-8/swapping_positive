@@ -18,10 +18,14 @@ public class Comment {
     @Getter @Setter
     private Timestamp date;
 
+    @Getter @Setter
+    private Integer replyParentId;
+
     public Comment(String userId, String comment) {
         this.date = new Timestamp(new java.util.Date().getTime());
         this.userId = userId;
         this.comment = comment;
+        this.replyParentId = -1;
     }
 
     public Comment() {}
