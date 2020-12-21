@@ -57,6 +57,7 @@ public class CommentController {
             return "error/comment-not-found";
         }
         model.addAttribute("comment", commentService.findById(commentId));
+        model.addAttribute("replies", commentService.findByReplyParentId(commentId));
         return "show-comment";
     }
 

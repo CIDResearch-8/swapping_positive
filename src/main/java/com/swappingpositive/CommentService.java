@@ -25,6 +25,9 @@ public class CommentService {
     public Comment findById(int id) {
         return dao.selectByPrimaryKey(id);//タイムライン表示
     }
+    public List<Comment> findByReplyParentId(int id) {
+        return dao.selectByColumn("reply_parent_id",id);//タイムライン表示
+    }
 
     public List<Comment> findAll() {
         return dao.selectAll();//タイムライン表示
