@@ -43,6 +43,10 @@ public class AccountService implements UserDetailsService {
         }
     }
 
+    public Account findById(String userId) {
+        return accountDao.selectByPrimaryKey(userId);
+    }
+
     public void deleteAccount(String userId) {
         if (!accountDao.delete(userId)) {
             throw new UsernameNotFoundException("ユーザーが存在しません");

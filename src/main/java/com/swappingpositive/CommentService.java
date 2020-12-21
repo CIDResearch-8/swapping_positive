@@ -22,6 +22,10 @@ public class CommentService {
                 form.getComment()));
     }
 
+    public Comment findById(int id) {
+        return dao.selectByPrimaryKey(id);//タイムライン表示
+    }
+
     public List<Comment> findAll() {
         return dao.selectAll();//タイムライン表示
     }
