@@ -37,11 +37,6 @@ public class Controllers {
             return "user/mypage";
         }
 
-        // /user/home -> user/home.html
-        @RequestMapping("/home")
-        public String home() {
-            return "user/home";
-        }
 
         // /user/
         @RequestMapping("/{commentId}")

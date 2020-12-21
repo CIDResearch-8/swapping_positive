@@ -1,6 +1,7 @@
 package com.swappingpositive;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.swappingpositive.login.AccountService;
 import com.swappingpositive.login.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,7 +17,9 @@ import java.util.Objects;
 public class CommentController {
     
     @Autowired
-    private CommentService service;
+    private CommentService commentService;
+    @Autowired
+    private AccountService accountService;
 
     //フォームの入力を受け取るためにCommentFormインスタンスを渡す
     @GetMapping("/comment")
@@ -33,7 +36,7 @@ public class CommentController {
         }
 
         try {
-            service.save(commentForm, loginUser.getUserId());
+            commentService.save(commentForm, loginUser.getUserId());
         }
         catch (NullPointerException e) {
             return "redirect:/comment-error";
@@ -47,12 +50,28 @@ public class CommentController {
         model.addAttribute("commentError", true);
         return comment(model);
     }
+
+    @GetMapping("/{userId}/comment/{commentId}")
+    public String showComment(@PathVariable String userId, @PathVariable Integer commentId, Model model) {
+        if (!commentService.findById(commentId).getUserId().equals(userId)) {
+            return "error/comment-not-found";
+        }
+        model.addAttribute("comment", commentService.findById(commentId));
+        return "show-comment";
+    }
+
+    @GetMapping("/user/home")
+    public String showTimeline(Model model) {
+        model.addAttribute("comments", commentService.findAll());
+        return "timeline";
+    }
+
 }
 
 @RestController
 class RestCommentController {
     @Autowired
-    private CommentService service;
+    private CommentService commentService;
 
     //フロントエンド側へuserIdを渡すための処理
     @GetMapping("rest-api/login-user-id/get")
@@ -74,7 +93,7 @@ class RestCommentController {
 
         //受け取ったオブジェクトをコメントとしてデータべースに挿入
         try {
-            service.save(new CommentForm(Objects.requireNonNull(comment).getInputText()), comment.getUserId());
+            commentService.save(new CommentForm(Objects.requireNonNull(comment).getInputText()), comment.getUserId());
         }
         catch (NullPointerException e) {
             e.printStackTrace();
