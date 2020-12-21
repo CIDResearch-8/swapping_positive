@@ -17,7 +17,9 @@
         <img class="d-flex align-self-start mr-3">
         <div class="media-body">
             <h5 class="mt-0" th:text="${comment.userId}"></h5>
-            <p th:text="${comment.comment}"></p>
+            <a class="text-dark" th:href="@{/{userId}/comment/{commentId}(userId=${comment.userId},commentId=${comment.commentId})}">
+                <p th:text="${comment.comment}"></p>
+            </a>
         </div>
     </div>
 
