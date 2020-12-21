@@ -64,6 +64,7 @@ public class CommentController {
     @GetMapping("/user/home")
     public String showTimeline(Model model) {
         model.addAttribute("comments", commentService.findAll());
+        model.addAttribute("service", commentService);
         return "timeline";
     }
 
