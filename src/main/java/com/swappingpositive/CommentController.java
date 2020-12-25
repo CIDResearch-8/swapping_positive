@@ -11,7 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Objects;
+import java.util.*;
 
 @Controller
 public class CommentController {
@@ -79,6 +79,22 @@ class RestCommentController {
     @GetMapping("rest-api/login-user-id/get")
     public String getLoginUserId(@AuthenticationPrincipal LoginUser loginUser) {
         return loginUser.getUserId();
+    }
+
+    //フロントエンド側へuserIdを渡すための処理
+    @GetMapping("rest-api/all-comment/get")
+    public List<Comment> getAllComments() {
+        List<Comment> list = commentService.findAll();
+        list.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
+        return list;
+    }
+
+    //フロントエンド側へuserIdを渡すための処理
+    @GetMapping("rest-api/reply-comment/{commentId}/get")
+    public List<Comment> getAllReplyComments(@PathVariable int commentId) {
+        List<Comment> list = commentService.findByReplyParentId(commentId);
+        list.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
+        return list;
     }
 
     @PostMapping(value="rest-api/comment/post", produces = "application/json")
