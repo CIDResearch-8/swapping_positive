@@ -9,6 +9,14 @@
                 padding-top: 50px;
             }
             
+            .navbar{
+                flex-direction: column !important;
+            }
+            
+            .active{
+                color:#1DA1F2;
+            }
+            
             .fixed-top{
                 height:　50px;
                 line-height: 50px;
@@ -17,7 +25,20 @@
             
             .fixed-side{
                 position: fixed;
+                font-size:20px;
+                letter-spacing:5px;
             }
+            
+            a:hover {
+                background-color:rgba(29,161,242,0.3);
+                color:#1DA1F2;
+            }
+            
+            a{
+                font-weight:bold;
+                color:black;
+            }
+            
             timeline-block{
                 border:solid;
             }
@@ -49,19 +70,46 @@
                 </div>
             </nav>
             <div class="row">
-                <!–メニューバー->
-                <div class ="col-md-2 offset-md-1">
-                    <div class ="fixed-side" style ="background-color:#0ff">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item active">ホーム</li>
-                            <li class="list-group-item">ニュース</li>
-                            <li class="list-group-item">コンフィグ</li>
-                        </ul>
-                    </div>
+                <!---サイドバー--->
+                <div class ="col-md-3">
+                    <nav class="navbarfixed fixed-side" style ="background-color:white">
+                            <a class="nav-item nav-link active" href="home.html">ホーム</a>
+                            <a class="nav-item nav-link" href="home.html">ニュース</a>
+                            <a class="nav-item nav-link" href="home.html">マイページ</a>
+                            <a class="nav-item nav-link" href="home.html">設定</a>
+                            <button type="button" class="btn btn-primary w-100">投稿</button>
+                            
+                    </nav>
                 </div>
-                <div class ="col-md-6 h-100 border">
+                <div class ="col-md-6 h-100">
+                    <!---①ここから--->
                     <div id ="timeline-block">
-                        <div class ="row">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-md-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-md-11">
+                                <div class="row">
+                                    <div class= "col-md-2 block name">name</div>
+                                    <div class= "col-md-2 offset-md-8 block time">1時間前</div>
+                                    <div class= "col-md-12 block">テキスト</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---①ここまでが一つの投稿--->
+                    <div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-md-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-md-11">
+                                <div class="row">
+                                    <div class= "col-md-2 block name">name</div>
+                                    <div class= "col-md-2 offset-md-8 block time">1時間前</div>
+                                    <div class= "col-md-12 block">テキスト</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
                             <div class ="col-md-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
                             <div class ="col-md-11">
                                 <div class="row">
