@@ -70,18 +70,22 @@ public class CommentController {
 
 }
 
+/*
+    get: フロントエンド側へ渡す処理
+    post: フロントエンド側から受け取る処理
+ */
 @RestController
 class RestCommentController {
     @Autowired
     private CommentService commentService;
 
-    //フロントエンド側へuserIdを渡すための処理
+    //userIdを渡す
     @GetMapping("rest-api/login-user-id/get")
     public String getLoginUserId(@AuthenticationPrincipal LoginUser loginUser) {
         return loginUser.getUserId();
     }
 
-    //フロントエンド側へuserIdを渡すための処理
+    //全てのコメントを渡す
     @GetMapping("rest-api/all-comment/get")
     public List<Comment> getAllComments() {
         List<Comment> list = commentService.findAll();
@@ -89,7 +93,13 @@ class RestCommentController {
         return list;
     }
 
-    //フロントエンド側へuserIdを渡すための処理
+    //特定のコメントを渡す
+    @GetMapping("rest-api/comment/{commentId}/get")
+    public Comment getComment(@PathVariable int commentId) {
+        return commentService.findById(commentId);
+    }
+
+    //特定のコメントのリプライ状況を渡す
     @GetMapping("rest-api/reply-comment/{commentId}/get")
     public List<Comment> getAllReplyComments(@PathVariable int commentId) {
         List<Comment> list = commentService.findByReplyParentId(commentId);
@@ -97,6 +107,7 @@ class RestCommentController {
         return list;
     }
 
+    //新しいコメントを受け取る
     @PostMapping(value="rest-api/comment/post", produces = "application/json")
     public void commentNew(@RequestBody String inputText) {
         //Ajax通信で受け取ったjsonをオブジェクトに変換

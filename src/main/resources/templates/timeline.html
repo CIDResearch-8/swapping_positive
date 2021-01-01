@@ -4,7 +4,8 @@
     <title>タイムライン</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" />
+    <link rel="stylesheet" media="all" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -13,36 +14,9 @@
 
     <p th:if="${commentError}">ユーザーID、パスワードが空です。</p>
 
-<!--    <div th:each="comment : ${comments}" th:if="${comment.replyParentId} == null" class="media border border-primary">-->
-<!--        <img class="d-flex align-self-start mr-3">-->
-<!--        <div class="media-body">-->
-<!--            <h5 class="mt-0" th:text="${comment.userId}"></h5>-->
-<!--            <a class="text-dark" th:href="@{/{userId}/comment/{commentId}(userId=${comment.userId},commentId=${comment.commentId})}">-->
-<!--                <p th:text="${comment.comment}"></p>-->
-<!--            </a>-->
-<!--            <div id="reply" th:each="reply : ${service.findByReplyParentId(comment.commentId)}" class="ml-5">-->
-<!--                <img class="d-flex align-self-start mr-3">-->
-<!--                <div class="media-body">-->
-<!--                    <h5 class="mt-0" th:text="${reply.userId}"></h5>-->
-<!--                    <a class="text-dark" th:href="@{/{userId}/comment/{commentId}(userId=${reply.userId},commentId=${reply.commentId})}">-->
-<!--                        <p th:text="${reply.comment}"></p>-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
     <div class="comment-view">
-        <div class="media border border-primary" :key="comment.commentId" v-for="comment in comments">
-        <img class="d-flex align-self-start mr-3">
-            <div class="media-body">
-                <h5 class="mt-0">{{comment.userId}}</h5>
-                <a class="text-dark" :href="'/' + comment.userId + '/comment/' + comment.commentId">
-                    <p>{{comment.comment}}</p>
-                </a>
-                <div class="chat icon"></div>{{comment.replies.length}}
-            </div>
-        </div>
+        <comment-view v-for="comment in comments" :comment="comment">
+        </comment-view>
     </div>
 </div>
 
