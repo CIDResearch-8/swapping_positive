@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -13,19 +14,16 @@
 
     <p th:if="${commentError}">ユーザーID、パスワードが空です。</p>
 
-    <div  th:object=${comment}>
-        <p th:text="*{userId}"><br></p>
-        <p th:text="*{comment}"><br></p>
-        <div th:if="${replies.size > 0}" th:each="reply : ${replies}">
-            <p th:text="${reply.userId}"><br></p>
-            <p th:text="${reply.comment}"><br></p>
-        </div>
+    <div class="comment-view">
+        <comment-view :comment="comment">
+            
+        </comment-view>
     </div>
-
 </div>
 
 <script th:src="@{/webjars/vue/2.6.11/vue.js}"></script>
 <script th:src="@{/webjars/axios/0.21.0/dist/axios.min.js}"></script>
+<script th:src="@{/js/show-comment.js}"></script>
 
 </body>
 </html>
