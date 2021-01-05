@@ -37,4 +37,12 @@ public interface Dao<T> {
      * @return 全ての行が入った仮型クラスのリスト
      */
     List<T> selectAll();
+
+    /**
+     * keyを用いてテーブルから一致した行を編集します。
+     * @param key テーブルのカラム名で編集したいid
+     * @return 編集できたかどうか
+     */
+    boolean update(Object key);
+
 }
