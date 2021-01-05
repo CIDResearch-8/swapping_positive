@@ -4,19 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @EnableAutoConfiguration
 public class Controllers {
-
-    //DB操作をするための処理
-    private final JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    public Controllers(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     // / -> index.html
     @RequestMapping("/")
@@ -24,10 +18,12 @@ public class Controllers {
         return "index";
     }
 
-    // /login -> login.html
-    @RequestMapping("/login")
-    public String login() {
-        return "login";
+    //./confirmにアクセスし、フォームを送信した時
+    @GetMapping("/confirm")
+    //今回は受け取る側になる
+    public String confirm(Model model) {
+        //return文に書かれた値と同じ@PostMappingがある場合、そちらのメソッドに遷移する
+        return "result";
     }
 
     // /user/ 以下はUsersクラスを介する
@@ -41,11 +37,6 @@ public class Controllers {
             return "user/mypage";
         }
 
-        // /user/home -> user/home.html
-        @RequestMapping("/home")
-        public String home() {
-            return "user/home";
-        }
 
         // /user/
         @RequestMapping("/{commentId}")

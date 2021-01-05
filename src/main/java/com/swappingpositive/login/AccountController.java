@@ -78,7 +78,7 @@ public class AccountController {
     @RequestMapping("/{userId}/delete")
     public String deleteAccount(@PathVariable String userId, @AuthenticationPrincipal LoginUser loginUser) {
         if (!loginUser.getUserId().equals(userId)) {
-            return "error/user_not_found";
+            return "error/user-not-found";
         }
 
         service.deleteAccount(userId);

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <title>タイムライン</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" />
+</head>
+
+<body>
+<div class="container">
+    <h2 class="mb-5">タイムライン</h2>
+
+    <p th:if="${commentError}">ユーザーID、パスワードが空です。</p>
+
+    <div th:each="comment : ${comments}" class="media border border-primary">
+        <img class="d-flex align-self-start mr-3">
+        <div class="media-body">
+            <h5 class="mt-0" th:text="${comment.userId}"></h5>
+            <a class="text-dark" th:href="@{/{userId}/comment/{commentId}(userId=${comment.userId},commentId=${comment.commentId})}">
+                <p th:text="${comment.comment}"></p>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<script th:src="@{/webjars/vue/2.6.11/vue.js}"></script>
+<script th:src="@{/webjars/axios/0.21.0/dist/axios.min.js}"></script>
+
+</body>
+</html>

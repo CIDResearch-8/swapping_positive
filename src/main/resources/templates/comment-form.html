@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <title>comment</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" />
+</head>
+
+<body>
+<div class="container">
+    <h2>comment</h2>
+
+    <p th:if="${commentError}">ユーザーID、パスワードが空です。</p>
+
+    <form id="text-control" action="#" th:action="@{''}" th:object="${commentForm}" class="form-horizontal" method="post">
+        <div class="form-group">
+            <div>あなたは{{ userId }}さんですね。</div>
+            <textarea class="form-control" th:field="*{comment}" v-model="inputText"
+                      th:class="${'form-control' + (#fields.hasErrors('comment') ? ' is-invalid' : '')}"
+                      maxlength="500" :class="{ 'is-invalid': isEmpty }" @keydown.ctrl.enter.prevent="submit"></textarea>
+            <div class="invalid-feedback">何か文字を入力してください</div>
+        </div>
+
+        <span class="form-group">
+            <button class="btn btn-outline-primary float-right" type="button" @click="submit" v-bind:disabled=isEmpty>Save</button>
+        </span>
+        <span class="badge badge-info float-right m-2">Ctrl + Enter : 送信</span>
+    </form>
+
+</div>
+
+<script th:src="@{/webjars/vue/2.6.11/vue.js}"></script>
+<script th:src="@{/webjars/axios/0.21.0/dist/axios.min.js}"></script>
+<script th:src="@{/js/comment-form.js}"></script>
+
+</body>
+</html>
