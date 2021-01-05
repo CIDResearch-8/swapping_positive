@@ -82,4 +82,13 @@ public class AccountDao implements Dao<Account> {
     public List<Account> selectAll() {
         return jdbcTemplate.query("SELECT * FROM account", new BeanPropertyRowMapper<>(Account.class));
     }
+
+    //更新
+    public boolean update(String columnName,String date,Object id) {
+        jdbcTemplate.update("UPDATE account SET ? = ? WHERE user_id = ?", columnName,date,id);
+
+        return selectByPrimaryKey(id) == null;
+    }
+
+
 }
