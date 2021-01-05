@@ -52,4 +52,10 @@ public class AccountService implements UserDetailsService {
             throw new UsernameNotFoundException("ユーザーが存在しません");
         }
     }
+    //アカウントアイコンの変更
+    public void updateAccountIcon(String userId){
+        if (!accountDao.update(userId)) {
+            throw new UsernameNotFoundException("ユーザーが存在しません");
+        }
+    }
 }
