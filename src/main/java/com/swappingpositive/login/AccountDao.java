@@ -64,7 +64,8 @@ public class AccountDao implements Dao<Account> {
                     account.getUserId(),
                     account.getUsername(),
                     account.getPassword(),
-                    account.getEmail());
+                    account.getEmail(),
+                    account.getIconUri());
         }
         catch (DuplicateKeyException e) {
             return false;

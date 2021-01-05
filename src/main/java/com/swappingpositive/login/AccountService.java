@@ -38,7 +38,8 @@ public class AccountService implements UserDetailsService {
         if (!accountDao.insert(new Account(registerForm.getUserId(),
                 registerForm.getUsername(),
                 registerForm.getEmail(),
-                registerForm.getPassword()))) {
+                registerForm.getPassword(),
+                registerForm.getIconUri()))) {
             throw new DuplicateKeyException("このユーザーIDは既に存在しています");
         }
     }

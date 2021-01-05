@@ -17,11 +17,15 @@ public class Account {
     @Getter @Setter @NonNull
     private String password;
 
-    public Account(String userId, String username, String email, String password) {
+    @Getter @Setter
+    private String iconUri;
+
+    public Account(String userId, String username, String email, String password, String iconUri) {
         this.userId = userId;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.iconUri = iconUri;
     }
 
     //デフォルトコンストラクタが無いと正常に機能しない
