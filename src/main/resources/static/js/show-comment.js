@@ -1,19 +1,68 @@
 Vue.component('comment-view', {
     props: {
-        comment: Object
+        isParent: Boolean
+    },
+    computed: {
+        getComment: function() {
+            var pathCommentId;
+            if (this.isParent == true) {
+                var path = location.pathname;
+                var regex = 'comment/[0-9]*';
+                pathCommentId = path.match(regex);
+                console.log(pathCommentId);
+            }
+            else {
+                pathCommentId = 'comment/' + this.comment.commentId;
+            }
+            axios
+                .get('/rest-api/' + pathCommentId + '/get')
+                .then(response => {
+                    this.comment = response.data;
+                    this.allReplyCommentGet(this.comment);
+                    console.log(this.comment);
+                    console.log('getting comment');
+                })
+                .catch(err => {
+                    console.log(err);
+            });
+        }
     },
     mounted() {
-        axios
-            .get('/rest-api/comment/' + this.comment.commentId + '/get')
-            .then(response => {
-                this.comment = response.data;
-                this.allReplyCommentGet(this.comment);
-                console.log(this.comment);
-                console.log('getting comment');
-            })
-            .catch(err => {
-                console.log(err);
-        });
+       var pathCommentId;
+       if (this.isParent == true) {
+           var path = location.pathname;
+           var regex = 'comment/[0-9]*';
+           pathCommentId = path.match(regex);
+           console.log(pathCommentId);
+       }
+       else {
+           pathCommentId = 'comment/' + this.comment.commentId;
+       }
+       axios
+           .get('/rest-api/' + pathCommentId + '/get')
+           .then(response => {
+               this.comment = response.data;
+               this.allReplyCommentGet(this.comment);
+               console.log(this.comment);
+               console.log('getting comment');
+           })
+           .catch(err => {
+               console.log(err);
+       });
+    },
+    methods: {
+        allReplyCommentGet: function(comment) {
+            axios
+                .get('/rest-api/reply-comment/' + comment.commentId + '/get')
+                .then(response => {
+                    this.$set(comment, 'replies', response.data);
+                    console.log(this.comment.replies);
+                    console.log('getting all replies');
+                })
+                .catch(err => {
+                    console.log(err.response);
+            });
+        }
     },
     template: '<div>' +
                 '<div class="comment-block" @load="">' +
@@ -39,54 +88,10 @@ var app = new Vue({
     el: '.comment-view',
     data() {
         return {
-            comment: {}
-       }
-    },
-    mounted() {
-        this.commentGet();
-    },
-    methods: {
-        commentGet: function() {
-            var path = location.pathname;
-            var regex = 'comment/[0-9]*';
-            var pathCommentId = path.match(regex);
-            console.log(pathCommentId);
-
-            axios
-                .get('/rest-api/' + pathCommentId[0] + '/get')
-                .then(response => {
-                    this.comment = response.data;
-                    this.allReplyCommentGet(this.comment);
-                    console.log(this.comment);
-                    console.log('getting comment');
-                })
-                .catch(err => {
-                    console.log(err);
-            });
-        },
-        specifiedCommentGet: function(commentId) {
-            axios
-                .get('/rest-api/comment/' + commentId + '/get')
-                .then(response => {
-                    this.comment = response.data;
-                    this.allReplyCommentGet(this.comment);
-                    console.log(this.comment);
-                    console.log('getting comment');
-                })
-                .catch(err => {
-                    console.log(err);
-            });
-        },
-        allReplyCommentGet: function(comment) {
-            axios
-                .get('/rest-api/reply-comment/' + comment.commentId + '/get')
-                .then(response => {
-                    this.$set(comment, 'replies', response.data);
-                    console.log('getting all replies');
-                })
-                .catch(err => {
-                    console.log(err.response);
-            });
+            comment: {
+                replies: [],
+                replyParentId: null
+            }
         }
     }
-})
+});

@@ -15,8 +15,8 @@
     <p th:if="${commentError}">ユーザーID、パスワードが空です。</p>
 
     <div class="comment-view">
-        <comment-view :comment="comment">
-            
+        <comment-view :is-parent="true">
+
         </comment-view>
     </div>
 </div>
