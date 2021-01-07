@@ -9,8 +9,13 @@
                 padding-top: 50px;
             }
             
+            container-fluid{
+                padding:0px;
+            }
+            
             .navbar{
                 flex-direction: column !important;
+                padding:0px;
             }
             
             .active{
@@ -23,14 +28,9 @@
                 padding-top: 0px;
             }
             
-            .fixed-side{
-                position: fixed;
-                font-size:20px;
-                letter-spacing:5px;
-            }
-            
             a:hover {
                 background-color:rgba(29,161,242,0.3);
+                text-decoration: none;
                 color:#1DA1F2;
             }
             
@@ -63,34 +63,32 @@
     </head>
     <body>
     <!–タイムライン->
-        <div class="container">
+        <div class="container-fluid">
             <nav class="navbar fixed-top">
-                <div class="container block">
-                    <div class="col-md-6 offset-md-3 border" style ="background-color: white">HOME</div>
+                <div class="container-fluid block">
+                    <div class="col-sm-12 border" style ="background-color: white">HOME</div>
                 </div>
             </nav>
             <div class="row">
+                
                 <!---サイドバー--->
-                <div class ="col-md-3">
-                    <nav class="navbarfixed fixed-side" style ="background-color:white">
-                            <a class="nav-item nav-link active" href="home.html">ホーム</a>
-                            <a class="nav-item nav-link" href="home.html">ニュース</a>
-                            <a class="nav-item nav-link" href="home.html">マイページ</a>
-                            <a class="nav-item nav-link" href="home.html">設定</a>
-                            <button type="button" class="btn btn-primary w-100">投稿</button>
-                            
-                    </nav>
-                </div>
+                <footer class ="fixed-bottom" style ="background-color:white">
+                    <a class="nav-item active" href="home_sm.html">ホーム</a>
+                    <a class="nav-item" href="home_sm.html">ニュース</a>
+                    <a class="nav-item" href="home_sm.html">マイページ</a>
+                    <a class="nav-item" href="home_sm.html">設定</a>
+                    <a type="button" class="btn btn-outline-primary w-100 nav-item" href="home_sm.html">投稿</a>
+                </footer>
                 <div class ="col-md-6 h-100">
+                    
                     <!---①ここから--->
                     <div id ="timeline-block">
                         <div class ="row border-right border-bottom border-left">
-                            <div class ="col-md-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
-                            <div class ="col-md-11">
+                            <div class ="col-sm-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-sm-11">
                                 <div class="row">
-                                    <div class= "col-md-2 block name">name</div>
-                                    <div class= "col-md-2 offset-md-8 block time">1時間前</div>
-                                    <div class= "col-md-12 block">テキスト</div>
+                                    <div class= "col-sm-2 block name">name</div>
+                                    <div class= "col-sm-12 block">テキストああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +100,6 @@
                             <div class ="col-md-11">
                                 <div class="row">
                                     <div class= "col-md-2 block name">name</div>
-                                    <div class= "col-md-2 offset-md-8 block time">1時間前</div>
                                     <div class= "col-md-12 block">テキスト</div>
                                 </div>
                             </div>
@@ -114,7 +111,81 @@
                             <div class ="col-md-11">
                                 <div class="row">
                                     <div class= "col-md-2 block name">name</div>
-                                    <div class= "col-md-2 offset-md-8 block time">1時間前</div>
+                                    <div class= "col-md-12 block">テキスト</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-md-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-md-11">
+                                <div class="row">
+                                    <div class= "col-md-2 block name">name</div>
+                                    <div class= "col-md-12 block">テキスト</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-md-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-md-11">
+                                <div class="row">
+                                    <div class= "col-md-2 block name">name</div>
+                                    <div class= "col-md-12 block">テキスト</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-md-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-md-11">
+                                <div class="row">
+                                    <div class= "col-md-2 block name">name</div>
+                                    <div class= "col-md-12 block">テキスト</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-md-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-md-11">
+                                <div class="row">
+                                    <div class= "col-md-2 block name">name</div>
+                                    <div class= "col-md-12 block">テキスト</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-md-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-md-11">
+                                <div class="row">
+                                    <div class= "col-md-2 block name">name</div>
+                                    <div class= "col-md-12 block">テキスト</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-md-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-md-11">
+                                <div class="row">
+                                    <div class= "col-md-2 block name">name</div>
+                                    <div class= "col-md-12 block">テキスト</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-md-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-md-11">
+                                <div class="row">
+                                    <div class= "col-md-2 block name">name</div>
                                     <div class= "col-md-12 block">テキスト</div>
                                 </div>
                             </div>
@@ -123,6 +194,8 @@
                 </div>
             </div>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="../static/js/bootstrap.min.js"></script>
     </body>
