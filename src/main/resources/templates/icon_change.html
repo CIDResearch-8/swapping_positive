@@ -2,7 +2,7 @@
 <html lang="ja">
     <head>
     <meta charset="UTF-8">
-        <title>設定</title>
+        <title>設定/アイコン</title>
         <link href="../static/css/bootstrap.min.css" rel="stylesheet">
         <style>
             body {
@@ -53,19 +53,21 @@
                 </div>
             </nav>
             <!---メニューバー--->
-            <footer class="fixed-bottom" style ="background-color:white">
-                <a class="nav-item" href="home.html">ホーム</a>
-                <a class="nav-item" href="home.html">ニュース</a>
-                <a class="nav-item" href="home.html">マイページ</a>
-                <a class="nav-item active" href="config.html">設定</a>
-                <a type="button" class="btn btn-outline-primary w-100 nav-item" href="home.html">投稿</a>
-            </footer>
-            <nav class ="nav flex-column">
-                <a class="nav-link border" href="icon_change.html" style="padding:0px">アイコン変更</a>
-                <a class="nav-link" href="name_change.html" style="padding:0px">名前変更</a>
-                <a class="nav-link border" href="mail_change.html" style="padding:0px">メールアドレス変更</a>
-            </nav>
+                <footer class="fixed-bottom" style ="background-color:white">
+                    <a class="nav-item" href="home.html">ホーム</a>
+                    <a class="nav-item" href="home.html">ニュース</a>
+                    <a class="nav-item" href="home.html">マイページ</a>
+                    <a class="nav-item active" href="config.html">設定</a>
+                    <a type="button" class="btn btn-outline-primary w-100 nav-item" href="home.html">投稿</a>
+                </footer>
         </div>
+        <h5>現在：</h5>
+        <img src="#!" class="img-thumbnail rounded-circle" style="width:100px; height:100px">
+        <div class="form-group" style="margin-top:20px">
+            <label for="file1">新規：</label>
+            <input type="file" id="file1" class="form-control-file">
+        </div>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
