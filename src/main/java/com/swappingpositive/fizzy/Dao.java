@@ -40,9 +40,12 @@ public interface Dao<T> {
 
     /**
      * keyを用いてテーブルから一致した行を編集します。
-     * @param key テーブルのカラム名で編集したいid
+     * 編集については、columnNameで指定したカラムの中身をsourceに入れ替えます。
+     * @param columnName カラム名
+     * @param source 編集した値
+     * @param key　編集したい
      * @return 編集できたかどうか
      */
-    boolean update(Object key);
+    boolean updateByPrimaryKey(String columnName, Object source, Object key);
 
 }

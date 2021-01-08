@@ -21,9 +21,8 @@ public class AccountDao implements Dao<Account> {
 
     @Override
     public List<Account> selectByColumn(String columnName, Object value) {
-        final String FORMATTED_COLUMN_NAME = String.format("%s", columnName);
         return jdbcTemplate
-                .query("SELECT * FROM account WHERE " + FORMATTED_COLUMN_NAME + " = ?",
+                .query(String.format("SELECT * FROM account WHERE %s = ?", columnName),
                         //BeanPropertyRowMapperで自動的に
                         //データベースのカラムとJavaのフィールドを一致させる
                         new BeanPropertyRowMapper<>(Account.class), value);
@@ -60,7 +59,7 @@ public class AccountDao implements Dao<Account> {
     public boolean insert(@NonNull Account account) {
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         try {
-            jdbcTemplate.update("INSERT INTO account VALUES (?, ?, ?, ?)",
+            jdbcTemplate.update("INSERT INTO account VALUES (?, ?, ?, ?, ?)",
                     account.getUserId(),
                     account.getUsername(),
                     account.getPassword(),
@@ -85,11 +84,10 @@ public class AccountDao implements Dao<Account> {
     }
 
     //更新
-    public boolean update(String columnName,String date,Object id) {
-        jdbcTemplate.update("UPDATE account SET ? = ? WHERE user_id = ?", columnName,date,id);
+    @Override
+    public boolean updateByPrimaryKey(String columnName, Object source ,Object key) {
+        jdbcTemplate.update(String.format("UPDATE account SET %s = ? WHERE user_id = ?", columnName), source ,key);
 
-        return selectByPrimaryKey(id) == null;
+        return true;
     }
-
-
 }

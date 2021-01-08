@@ -2,6 +2,7 @@ package com.swappingpositive;
 
 
 import com.swappingpositive.fizzy.Dao;
+import com.swappingpositive.login.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -51,9 +52,8 @@ public class CommentDao implements Dao<Comment> {
 
     @Override
     public List<Comment> selectByColumn(String columnName, Object value) {
-        final String FORMATTED_COLUMN_NAME = String.format("%s", columnName);
         return jdbcTemplate
-                .query("SELECT * FROM comment WHERE " + FORMATTED_COLUMN_NAME + " = ?",
+                .query(String.format("SELECT * FROM comment WHERE %s = ?", columnName),
                         //BeanPropertyRowMapperで自動的に
                         //データベースのカラムとJavaのフィールドを一致させる
                         new BeanPropertyRowMapper<>(Comment.class), value);
@@ -62,6 +62,12 @@ public class CommentDao implements Dao<Comment> {
     @Override
     public List<Comment> selectAll() {
         return jdbcTemplate.query("SELECT * FROM comment", new BeanPropertyRowMapper<>(Comment.class));
+    }
+
+    @Override
+    public boolean updateByPrimaryKey(String columnName, Object source, Object key) {
+        jdbcTemplate.update(String.format("UPDATE comment SET %s = ? WHERE comment_id = ?", columnName), source ,key);
+        return true;
     }
 
     public List<Comment> selectUserComment(String userId) {

@@ -38,8 +38,7 @@ public class AccountService implements UserDetailsService {
         if (!accountDao.insert(new Account(registerForm.getUserId(),
                 registerForm.getUsername(),
                 registerForm.getEmail(),
-                registerForm.getPassword(),
-                registerForm.getIconUri()))) {
+                registerForm.getPassword()))) {
             throw new DuplicateKeyException("このユーザーIDは既に存在しています");
         }
     }
@@ -54,8 +53,8 @@ public class AccountService implements UserDetailsService {
         }
     }
     //アカウントアイコンの変更
-    public void updateAccountIcon(String userId){
-        if (!accountDao.update(userId)) {
+    public void updateAccountIcon(String source, String userId){
+        if (!accountDao.updateByPrimaryKey("icon_uri", source, userId)) {
             throw new UsernameNotFoundException("ユーザーが存在しません");
         }
     }
