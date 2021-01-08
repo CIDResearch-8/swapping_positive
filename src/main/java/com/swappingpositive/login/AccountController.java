@@ -3,6 +3,7 @@ package com.swappingpositive.login;
 import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -73,6 +74,15 @@ public class AccountController {
         model.addAttribute("registerError", true);
         return register(model);
     }
+
+    @RequestMapping("/config")
+    public String config(Model model) {
+        model.addAttribute("usernameForm", new UsernameForm());
+        model.addAttribute("emailForm", new EmailForm());
+        model.addAttribute("iconForm", new IconForm());
+        return "config";
+    }
+
 
     //ユーザーごとにアカウントを削除する処理
     @RequestMapping("/{userId}/delete")

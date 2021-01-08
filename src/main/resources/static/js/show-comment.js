@@ -1,8 +1,17 @@
 Vue.component('comment-view', {
     props: {
+        comment: Object,
         isParent: Boolean
     },
     computed: {
+        getCommentWhenChanged: function() {
+            this.getComment();
+        }
+    },
+    mounted() {
+        this.getComment();
+    },
+    methods: {
         getComment: function() {
             var pathCommentId;
             if (this.isParent == true) {
@@ -18,39 +27,16 @@ Vue.component('comment-view', {
                 .get('/rest-api/' + pathCommentId + '/get')
                 .then(response => {
                     this.comment = response.data;
-                    this.allReplyCommentGet(this.comment);
-                    console.log(this.comment);
-                    console.log('getting comment');
+                    this.$nextTick(() => {
+                        this.allReplyCommentGet(this.comment);
+                        console.log(this.comment);
+                        console.log('getting comment');
+                    });
                 })
                 .catch(err => {
                     console.log(err);
             });
-        }
-    },
-    mounted() {
-       var pathCommentId;
-       if (this.isParent == true) {
-           var path = location.pathname;
-           var regex = 'comment/[0-9]*';
-           pathCommentId = path.match(regex);
-           console.log(pathCommentId);
-       }
-       else {
-           pathCommentId = 'comment/' + this.comment.commentId;
-       }
-       axios
-           .get('/rest-api/' + pathCommentId + '/get')
-           .then(response => {
-               this.comment = response.data;
-               this.allReplyCommentGet(this.comment);
-               console.log(this.comment);
-               console.log('getting comment');
-           })
-           .catch(err => {
-               console.log(err);
-       });
-    },
-    methods: {
+        },
         allReplyCommentGet: function(comment) {
             axios
                 .get('/rest-api/reply-comment/' + comment.commentId + '/get')
@@ -86,12 +72,4 @@ Vue.component('comment-view', {
 
 var app = new Vue({
     el: '.comment-view',
-    data() {
-        return {
-            comment: {
-                replies: [],
-                replyParentId: null
-            }
-        }
-    }
 });
