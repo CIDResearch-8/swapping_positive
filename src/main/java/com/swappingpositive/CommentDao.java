@@ -65,11 +65,15 @@ public class CommentDao implements Dao<Comment> {
     }
 
     @Override
-    public boolean updateByPrimaryKey(String columnName, Object source, Object key) {
-        jdbcTemplate.update(String.format("UPDATE comment SET %s = ? WHERE comment_id = ?", columnName), source ,key);
-        return true;
+    public boolean updateByPrimaryKey (String columnName, Object source, Object key){
+        try{
+            jdbcTemplate.update(String.format("UPDATE comment SET %s = ? WHERE comment_id = ?", columnName), source, key);
+            return true;
+        }
+        catch (DataAccessException){
+            return false;
+        }
     }
-
     public List<Comment> selectUserComment(String userId) {
         return jdbcTemplate.query("SELECT * FROM comment WHERE user_id = ?", new BeanPropertyRowMapper<>(Comment.class), userId);
     }
