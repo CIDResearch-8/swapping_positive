@@ -4,6 +4,7 @@ package com.swappingpositive;
 import com.swappingpositive.fizzy.Dao;
 import com.swappingpositive.login.Account;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -70,7 +71,7 @@ public class CommentDao implements Dao<Comment> {
             jdbcTemplate.update(String.format("UPDATE comment SET %s = ? WHERE comment_id = ?", columnName), source, key);
             return true;
         }
-        catch (DataAccessException){
+        catch (DataAccessException e){
             return false;
         }
     }
