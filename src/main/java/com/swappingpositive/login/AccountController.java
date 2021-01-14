@@ -4,6 +4,7 @@ import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -94,4 +95,21 @@ public class AccountController {
         service.deleteAccount(userId);
         return "redirect:/login";
     }
+    //送信
+    @PostMapping("/config")
+    public String registerNew(@AuthenticationPrincipal LoginUser loginUser,@Validated UsernameForm usernameForm, BindingResult result) {
+        if (result.hasErrors()) {
+            return "username";
+        }
+
+        try {
+            service.updateUsername(usernameForm,loginUser.getUserId());
+        }
+        catch (UsernameNotFoundException e) {
+            return "redirect:/config-error";
+        }
+        return "redirect:/user/home";
+    }
+
+
 }

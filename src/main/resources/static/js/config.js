@@ -1,5 +1,5 @@
 var app = new Vue({
-    el: '#text-control-config',
+    el: '.text-control-config',
     data() {
         return {
             isButtonDisabled: false,
