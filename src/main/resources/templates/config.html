@@ -14,7 +14,7 @@
 
     <p th:if="${commentError}">ユーザーID、パスワードが空です。</p>
 
-    <form id="text-control-config" action="#" th:action="@{''}" th:object="${usernameForm}" class="form-horizontal" method="post">
+    <form action="#" th:action="@{''}" th:object="${usernameForm}" class="form-horizontal text-control-config" method="post">
         <div class="form-group">
             <div>あなたは{{ userId }}さんですね。表示名を変更する場合はここに入力してください。</div>
             <input type="text" class="form-control" th:field="*{username}"  v-model="inputText"
@@ -24,6 +24,34 @@
         </div>
 
         <span class="form-group">
+        </span>
+        <span class="badge badge-info float-right m-2">Ctrl + Enter : 送信</span>
+    </form>
+
+    <form action="#" th:action="@{''}" th:object="${emailForm}" class="form-horizontal text-control-config" method="post">
+        <div class="form-group">
+            <div>Emailアドレスを変更する場合はここに入力してください。</div>
+            <input type="text" class="form-control" th:field="*{email}"  v-model="inputText"
+                   :class="{ 'is-invalid': isEmpty }" @keydown.ctrl.enter.prevent="submit">
+            <div class="invalid-feedback">何か文字を入力してください</div>
+        </div>
+
+        <span class="form-group">
+            <button class="btn btn-outline-primary float-right" type="button" @click="submit" v-bind:disabled=isEmpty>Save</button>
+        </span>
+        <span class="badge badge-info float-right m-2">Ctrl + Enter : 送信</span>
+    </form>
+
+    <form action="#" th:action="@{''}" th:object="${iconForm}" class="form-horizontal text-control-config" method="post">
+        <div class="form-group">
+            <div>アイコンを変更する場合はここに入力してください。</div>
+            <input type="file" class="form-control" th:field="*{icon}"  v-model="inputText"
+                   :class="{ 'is-invalid': isEmpty }" @keydown.ctrl.enter.prevent="submit">
+            <div class="invalid-feedback">何か文字を入力してください</div>
+        </div>
+
+        <span class="form-group">
+            <button class="btn btn-outline-primary float-right" type="button" @click="submit" v-bind:disabled=isEmpty>Save</button>
         </span>
         <span class="badge badge-info float-right m-2">Ctrl + Enter : 送信</span>
     </form>
