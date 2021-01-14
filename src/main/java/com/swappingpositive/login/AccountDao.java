@@ -90,7 +90,7 @@ public class AccountDao implements Dao<Account> {
             jdbcTemplate.update(String.format("UPDATE account SET %s = ? WHERE user_id = ?", columnName), source, key);
             return true;
         }
-        catch{
+        catch(DataAccessException e){
             return false;
         }
     }
