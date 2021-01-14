@@ -29,6 +29,7 @@ Vue.component('comment-view', {
                     this.comment = response.data;
                     this.$nextTick(() => {
                         this.allReplyCommentGet(this.comment);
+                        this.iconUrlGet(this.comment);
                         console.log(this.comment);
                         console.log('getting comment');
                     });
@@ -48,12 +49,23 @@ Vue.component('comment-view', {
                 .catch(err => {
                     console.log(err.response);
             });
+        },
+        iconUrlGet: function(comment) {
+            axios
+                .get('/rest-api/icon-uri/' + comment.commentId + '/get')
+                .then(response => {
+                    this.$set(comment, 'iconUri', response.data);
+                    console.log('getting icon uri');
+                })
+                .catch(err => {
+                    console.log(err.response);
+            });
         }
     },
     template: '<div>' +
                 '<div class="comment-block" @load="">' +
                     '<div class="media border border-primary bg-light" v-if="comment.replyParentId == null">' +
-                        '<img class="d-flex align-self-start mr-3">' +
+                        '<img class="d-flex align-self-start mr-3" :src="comment.iconUri">' +
                         '<div class="media-body">' +
                             '<h5 class="mt-0">{{comment.userId}}</h5>' +
                             '<a class="text-dark" :href="\'/\' + comment.userId + \'/comment/\' + comment.commentId">' +
