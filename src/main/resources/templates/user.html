@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+    <meta charset="UTF-8">
+        <title>マイページ</title>
+        <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body {
+                padding-top: 50px;
+            }
+            
+            container-fluid{
+                padding:0px;
+            }
+            
+            .navbar{
+                flex-direction: column !important;
+                padding:0px;
+            }
+            
+            .active{
+                color:#1DA1F2;
+
+            }
+            
+            .fixed-top{
+                height:　50px;
+                line-height: 50px;
+                padding-top: 0px;
+            }
+            
+            a:hover {
+                background-color:rgba(29,161,242,0.3);
+                text-decoration: none;
+                color:#1DA1F2;
+            }
+            
+            a{
+                font-weight:bold;
+                color:black;
+            }
+            
+            timeline-block{
+                border:solid;
+            }
+            
+            .block{
+                padding:0px;
+                border:0px;
+            }
+            
+            .name{
+                font-weight: bolder;
+            }
+            
+            .icon{
+                padding:3px;
+            }
+        </style>
+    </head>
+    <body>
+    <!–タイムライン->
+        <div class="container-fluid">
+            <nav class="navbar fixed-top">
+                <div class="container-fluid block">
+                    <div class="col-12 border" style ="background-color: white">HOME</div>
+                </div>
+            </nav>
+            <!---メニューバー--->
+            <footer class ="fixed-bottom" style ="background-color:white">
+                    <a class="nav-item" href="home.html">ホーム</a>
+                    <a class="nav-item" href="home.html">ニュース</a>
+                    <a class="nav-item active" href="user.html">マイページ</a>
+                    <a class="nav-item" href="config.html">設定</a>
+                    <a type="button" class="btn btn-info float-right" role="button" href="home.html"><img src="../image/logout.png" class="img-thumbnail rounded-circle" style="width:30px; height:30px"></a>
+                    <a type="button" class="btn btn-outline-primary w-100 nav-item"  role="button" href="#">投稿</a>
+            </footer>
+                    <!---①ここから--->
+            <div id ="timeline-block">
+                <div class ="row border-right border-bottom border-left">
+                    <div class ="col-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                        <div class ="col-11">
+                            <div class="row">
+                                <div class= "col-2 block name">name</div>
+                                <div class= "col-12 block">テキストああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!---①ここまでが一つの投稿--->
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
+    </body>
+</html>
