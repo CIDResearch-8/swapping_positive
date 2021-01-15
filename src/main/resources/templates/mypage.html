@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <title>マイページ</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" media="all" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+<div class="container">
+    <h2 class="mb-5">マイページ</h2>
+
+    <p th:if="${commentError}">ユーザーID、パスワードが空です。</p>
+
+    <div class="comment-view">
+        <comment-view v-for="comment in comments" :comment="comment">
+        </comment-view>
+    </div>
+</div>
+
+<script th:src="@{/webjars/vue/2.6.11/vue.js}"></script>
+<script th:src="@{/webjars/axios/0.21.0/dist/axios.min.js}"></script>
+<script th:src="@{/js/mypage.js}"></script>
+
+
+</body>
+</html>

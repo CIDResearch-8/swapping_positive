@@ -75,7 +75,4 @@ public class CommentDao implements Dao<Comment> {
             return false;
         }
     }
-    public List<Comment> selectUserComment(String userId) {
-        return jdbcTemplate.query("SELECT * FROM comment WHERE user_id = ?", new BeanPropertyRowMapper<>(Comment.class), userId);
-    }
 }
