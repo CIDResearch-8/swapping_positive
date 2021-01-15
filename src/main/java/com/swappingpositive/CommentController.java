@@ -61,6 +61,15 @@ public class CommentController {
         return "show-comment";
     }
 
+    @GetMapping("{userId}/mypage")
+    public String showAccount(@PathVariable String userId, Model model) {
+        if (accountService.findById(userId) == null) {
+            return "error/user-not-found";
+        }
+        model.addAttribute("comments", commentService.findByUser(userId));
+        return "mypage";
+    }
+
     @GetMapping("/user/home")
     public String showTimeline(Model model) {
         model.addAttribute("comments", commentService.findAll());
@@ -89,6 +98,14 @@ class RestCommentController {
     @GetMapping("rest-api/all-comment/get")
     public List<Comment> getAllComments() {
         List<Comment> list = commentService.findAll();
+        list.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
+        return list;
+    }
+
+    //特定のユーザーの全てのコメントを渡す
+    @GetMapping("rest-api/user-comment/{userId}/get")
+    public List<Comment> getUserComments(@PathVariable String userId) {
+        List<Comment> list = commentService.findByUser(userId);
         list.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
         return list;
     }
