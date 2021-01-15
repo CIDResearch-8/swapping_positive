@@ -96,14 +96,42 @@ public class AccountController {
         return "redirect:/login";
     }
     //送信
-    @PostMapping("/config")
-    public String registerNew(@AuthenticationPrincipal LoginUser loginUser,@Validated UsernameForm usernameForm, BindingResult result) {
+    @PostMapping("/config-username")
+    public String updateAccount(@AuthenticationPrincipal LoginUser loginUser,@Validated UsernameForm usernameForm, BindingResult result) {
         if (result.hasErrors()) {
-            return "username";
+            return "config";
         }
 
         try {
             service.updateUsername(usernameForm,loginUser.getUserId());
+        }
+        catch (UsernameNotFoundException e) {
+            return "redirect:/config-error";
+        }
+        return "redirect:/user/home";
+    }
+    @PostMapping("/config-email")
+    public String updateAccount(@AuthenticationPrincipal LoginUser loginUser,@Validated EmailForm emailForm, BindingResult result) {
+        if (result.hasErrors()) {
+            return "config";
+        }
+
+        try {
+            service.updateEmail(emailForm,loginUser.getUserId());
+        }
+        catch (UsernameNotFoundException e) {
+            return "redirect:/config-error";
+        }
+        return "redirect:/user/home";
+    }
+    @PostMapping("/config-icon")
+    public String updateAccount(@AuthenticationPrincipal LoginUser loginUser,@Validated IconForm iconForm, BindingResult result) {
+        if (result.hasErrors()) {
+            return "config";
+        }
+
+        try {
+            service.updateAccountIcon(iconForm,loginUser.getUserId());
         }
         catch (UsernameNotFoundException e) {
             return "redirect:/config-error";
