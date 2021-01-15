@@ -6,7 +6,8 @@
         <link href="../static/css/bootstrap.min.css" rel="stylesheet">
         <style>
             body {
-                padding-top: 50px;
+                padding-top: 100px;
+                padding-bottom:276px;
             }
             
             .container-fluid{
@@ -18,13 +19,18 @@
                 padding:0px;
             }
             
+            .active{
+                color:#1DA1F2;
+
+            }
+            
             .fixed-top{
                 height:　50px;
                 line-height: 50px;
                 padding-top: 0px;
             }
             
-            a:hover {
+            .nav-item:hover {
                 background-color:rgba(29,161,242,0.3);
                 text-decoration: none;
                 color:#1DA1F2;
@@ -33,36 +39,42 @@
             a{
                 font-weight:bold;
                 color:black;
+                font-size:3rem;
+                padding:5px;
             }
             
-            .active{
-                color:#1DA1F2;
+            h6{
+                font-size:3rem;
+                padding-bottom:10px;
             }
             
+            .form-group{
+                font-size:3rem;
+            }
         </style>
     </head>
     <body>
         <div class="container-fluid">
             <nav class="navbar fixed-top">
                 <div class="container-fluid block">
-                    <div class="col-12 border" style ="background-color: white">CONFIG</div>
+                    <div class="col-12 py-4 border font-weight-bold" style ="background-color: white; font-size: 3rem;">CONFIG</div>
                 </div>
             </nav>
             <!---メニューバー--->
             <footer class="fixed-bottom" style ="background-color:white">
                 <a class="nav-item" href="home.html">ホーム</a>
                 <a class="nav-item" href="home.html">ニュース</a>
-                <a class="nav-item" href="home.html">マイページ</a>
+                <a class="nav-item" href="user.html">マイページ</a>
                 <a class="nav-item active" href="config.html">設定</a>
-                <a type="button" class="btn btn-outline-primary w-100 nav-item" href="home.html">投稿</a>
+                <a type="button" class="btn btn-outline-primary w-100 nav-item btn-lg btn-block" href="home.html">投稿</a>
             </footer>
             <h6>現在：</h6>
-            <p>メールアドレス</p>
+            <p style="font-size:2rem;">メールアドレス</p>
             <div class="form-group">
                 <label for="formGroupExampleInput">新規：</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="ユーザー名">
+                <input type="text" class="form-control form-control-lg" id="formGroupExampleInput" style="font-size:2rem;" placeholder="ユーザー名">
             </div>
-            <button type="button" class="btn btn-primary">変更</button>
+            <button type="button" class="btn btn-primary btn-lg" style="font-size:2rem;">変更</button>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
