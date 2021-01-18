@@ -18,42 +18,30 @@
         <div class="form-group">
             <div>あなたは{{ userId }}さんですね。表示名を変更する場合はここに入力してください。</div>
             <input type="text" class="form-control" th:field="*{username}"  v-model="inputText"
-                      :class="{ 'is-invalid': isEmpty }" @keydown.ctrl.enter.prevent="submit">
+                      :class="{ 'is-invalid': isEmpty }">
             <div class="invalid-feedback">何か文字を入力してください</div>
             <input type="submit" class="btn btn-outline-primary float-right" v-bind:disabled=isEmpty value="Save">
         </div>
-
-        <span class="form-group">
-        </span>
-        <span class="badge badge-info float-right m-2">Ctrl + Enter : 送信</span>
     </form>
 
-    <form action="#" th:action="@{'config-email'}" th:object="${emailForm}" class="form-horizontal text-control-config" method="post">
+    <form action="#" th:action="@{/config-email}" th:object="${emailForm}" class="form-horizontal text-control-config" method="post">
         <div class="form-group">
             <div>Emailアドレスを変更する場合はここに入力してください。</div>
             <input type="text" class="form-control" th:field="*{email}"  v-model="inputText"
-                   :class="{ 'is-invalid': isEmpty }" @keydown.ctrl.enter.prevent="submit">
+                   :class="{ 'is-invalid': isEmpty }">
             <div class="invalid-feedback">何か文字を入力してください</div>
             <input type="submit" class="btn btn-outline-primary float-right" v-bind:disabled=isEmpty value="Save">
         </div>
-
-        <span class="form-group">
-        </span>
-        <span class="badge badge-info float-right m-2">Ctrl + Enter : 送信</span>
     </form>
 
-    <form action="#" th:action="@{'config-icon'}" th:object="${iconForm}" class="form-horizontal text-control-config" method="post">
+    <form action="#" th:action="@{/config-icon}" th:object="${iconForm}" class="form-horizontal text-control-config" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <div>アイコンを変更する場合はここに入力してください。</div>
+            <div>アイコンを変更する場合はファイルを選択してください（jpgのみ・100KB以内）</div>
             <input type="file" class="form-control" th:field="*{icon}"  v-model="inputText"
-                   :class="{ 'is-invalid': isEmpty }" @keydown.ctrl.enter.prevent="submit">
+                   :class="{ 'is-invalid': isEmpty }">
             <div class="invalid-feedback">何か文字を入力してください</div>
             <input type="submit" class="btn btn-outline-primary float-right" v-bind:disabled=isEmpty value="Save">
         </div>
-
-        <span class="form-group">
-        </span>
-        <span class="badge badge-info float-right m-2">Ctrl + Enter : 送信</span>
     </form>
 
 </div>

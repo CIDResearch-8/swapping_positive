@@ -4,10 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Base64;
+import java.util.Objects;
 
 class UsernameForm {
     @Getter @Setter
@@ -29,9 +31,9 @@ class IconForm {
         StringBuilder sb = new StringBuilder();
 
         try {
-            contentType = Files.probeContentType((Path) icon);
+            contentType = icon.getContentType();
             base64Str = Base64.getEncoder()
-                    .encodeToString(Files.readAllBytes((Path) icon));
+                    .encodeToString(icon.getBytes());
 
             sb.append("data:")
                     .append(contentType)
