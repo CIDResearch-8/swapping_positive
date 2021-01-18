@@ -5,6 +5,7 @@ import java.util.*;
 import com.swappingpositive.fizzy.Dao;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -86,8 +87,12 @@ public class AccountDao implements Dao<Account> {
     //更新
     @Override
     public boolean updateByPrimaryKey(String columnName, Object source ,Object key) {
-        jdbcTemplate.update(String.format("UPDATE account SET %s = ? WHERE user_id = ?", columnName), source ,key);
-
-        return true;
+        try {
+            jdbcTemplate.update(String.format("UPDATE account SET %s = ? WHERE user_id = ?", columnName), source, key);
+            return true;
+        }
+        catch(DataAccessException e){
+            return false;
+        }
     }
 }
