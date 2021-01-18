@@ -9,10 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AccountController {
@@ -97,13 +94,13 @@ public class AccountController {
     }
     //送信
     @PostMapping("/config-username")
-    public String updateAccount(@AuthenticationPrincipal LoginUser loginUser,@Validated UsernameForm usernameForm, BindingResult result) {
+    public String updateAccount(@AuthenticationPrincipal LoginUser loginUser, @Validated UsernameForm usernameForm, BindingResult result) {
         if (result.hasErrors()) {
             return "config";
         }
 
         try {
-            service.updateUsername(usernameForm,loginUser.getUserId());
+            service.updateUsername(usernameForm, loginUser.getUserId());
         }
         catch (UsernameNotFoundException e) {
             return "redirect:/config-error";
@@ -111,13 +108,13 @@ public class AccountController {
         return "redirect:/user/home";
     }
     @PostMapping("/config-email")
-    public String updateAccount(@AuthenticationPrincipal LoginUser loginUser,@Validated EmailForm emailForm, BindingResult result) {
+    public String updateAccount(@AuthenticationPrincipal LoginUser loginUser, @Validated EmailForm emailForm, BindingResult result) {
         if (result.hasErrors()) {
             return "config";
         }
 
         try {
-            service.updateEmail(emailForm,loginUser.getUserId());
+            service.updateEmail(emailForm, loginUser.getUserId());
         }
         catch (UsernameNotFoundException e) {
             return "redirect:/config-error";
@@ -125,19 +122,33 @@ public class AccountController {
         return "redirect:/user/home";
     }
     @PostMapping("/config-icon")
-    public String updateAccount(@AuthenticationPrincipal LoginUser loginUser,@Validated IconForm iconForm, BindingResult result) {
+    public String updateAccount(@AuthenticationPrincipal LoginUser loginUser, @Validated IconForm iconForm, BindingResult result) {
         if (result.hasErrors()) {
             return "config";
         }
 
         try {
-            service.updateAccountIcon(iconForm,loginUser.getUserId());
+            service.updateAccountIcon(iconForm, loginUser.getUserId());
         }
         catch (UsernameNotFoundException e) {
             return "redirect:/config-error";
         }
         return "redirect:/user/home";
     }
+}
 
+@RestController
+class RestAccountController {
+    @Autowired
+    AccountService accountService;
 
+    @GetMapping("/rest-api/{userId}/username/get")
+    public String getUsername(@PathVariable String userId) {
+        return accountService.findById(userId).getUsername();
+    }
+
+    @GetMapping("/rest-api/{userId}/icon-uri/get")
+    public String getIconUri(@PathVariable String userId) {
+        return accountService.findById(userId).getIconUri();
+    }
 }
