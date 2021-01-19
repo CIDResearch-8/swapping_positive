@@ -2,16 +2,12 @@
 <html lang="ja">
     <head>
     <meta charset="UTF-8">
-        <title>設定/アイコン</title>
+        <title>設定/アイコン変更</title>
         <link href="../static/css/bootstrap.min.css" rel="stylesheet">
         <style>
             body {
-                padding-top: 50px;
-                padding-bottom:65px;
-            }
-            
-            .container-fluid{
-                padding:0px;
+                padding-top: 176px;
+                padding-bottom:162px;
             }
             
             .navbar{
@@ -25,6 +21,10 @@
                 padding-top: 0px;
             }
             
+            .nav-item{
+                font-weight:bold;
+            }
+            
             .nav-item:hover {
                 background-color:rgba(29,161,242,0.3);
                 text-decoration: none;
@@ -32,9 +32,9 @@
             }
             
             a{
-                font-weight:bold;
                 color:black;
-                font-size:2rem;
+                font-size:3rem;
+                padding:5px;
             }
             
             .active{
@@ -45,13 +45,28 @@
                 padding:0px;
                 border:0px;
             }
+            
+            h6{
+                font-size:4rem;
+                padding-bottom:3rem;
+                margin-left:1.5rem;
+            }
+            
+            .form-group{
+                font-size:3rem;
+            }
+            
+            .btn-tweet{
+                font-size:3rem;
+            }
         </style>
     </head>
     <body>
-        <div class="container-fluid">
+        <div class="container m-0">
             <nav class="navbar fixed-top">
                 <div class="container-fluid block">
-                    <div class="col-12 border" style ="background-color: white">CONFIG</div>
+                    <div class="col-12 py-4 border" style ="background-color: white; font-size: 3rem;">CONFIG</div>
+                    <a class="border w-100" href="config.html"><img src="../image/arrow_left_24.png" class="img-thumbnail rounded-circle mr-3" style="width:65spx; height:65px">戻る</a>
                 </div>
             </nav>
             <!---メニューバー--->
@@ -60,16 +75,18 @@
                     <a class="nav-item" href="home.html">ニュース</a>
                     <a class="nav-item" href="user.html">マイページ</a>
                     <a class="nav-item active" href="config.html">設定</a>
-                    <a type="button" class="btn btn-outline-primary w-100 nav-item" href="home.html">投稿</a>
+                    <a type="button" class="btn btn-outline-primary btn-lg btn-block btn-tweet" href="home.html">投稿</a>
                 </footer>
-        </div>
-        <h5>現在：</h5>
-        <img src="#!" class="img-thumbnail rounded-circle" style="width:100px; height:100px">
-        <div class="form-group" style="margin-top:20px">
-            <label for="file1">新規：</label>
-            <input type="file" id="file1" class="form-control-file">
-        </div>
         
+        <h6>現在：</h6>
+        <img src="../image/logout.png" class="img-thumbnail rounded-circle ml-4" style="width:300px; height:300px">
+        <div class="form-group" style="margin-top:20px">
+            <label for="file1" class="mt-5 mb-4 ml-4" style="font-size:4rem">新規：</label>
+            <input type="file" id="file1" class="form-control-file ml-4">
+        </div>
+        <button type="button" class="btn btn-primary btn-lg px-5 py-3 mt-5 ml-4" style="font-size:3rem;">変更</button>
+        </div>
+            
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

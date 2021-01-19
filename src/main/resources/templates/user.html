@@ -7,7 +7,7 @@
         <style>
             body {
                 padding-top: 100px;
-                padding-bottom:276px;
+                padding-bottom:250px;
             }
             
             container-fluid{
@@ -63,6 +63,10 @@
                 width:100px;
                 height:100px;
             }
+            
+            .btn-tweet{
+                font-size:3rem;
+            }
         </style>
     </head>
     <body>
@@ -70,19 +74,22 @@
         <div class="container-fluid">
             <nav class="navbar fixed-top">
                 <div class="container-fluid block">
-                    <div class="col-12 py-4 border font-weight-bold" style ="background-color: white; font-size: 3rem;">MY PAGE</div>
+                    <div class="col-12 py-4 border" style ="background-color: white; font-size: 3rem;">MY PAGE</div>
                 </div>
             </nav>
             <!---メニューバー--->
+            <div class="w-100" style="height:0px;">
+                <a type="button" class="btn" role="button"  href="config.html">
+                    <img src="../image/logout.png" class="img-thumbnail rounded-circle fixed-bottom" style="width:120px; height:120px; margin-bottom:175px; margin-left:auto; margin-right:20px;">
+                </a>
+            </div>
+            
             <footer class ="fixed-bottom" style ="background-color:white">
-                    <div class="text-right">
-                        <a type="button" class="btn" role="button" href="home.html"><img src="../image/logout.png" class="img-thumbnail rounded-circle" style="width:120px; height:120px"></a>
-                    </div>
                     <a class="nav-item" href="home.html">ホーム</a>
                     <a class="nav-item" href="home.html">ニュース</a>
                     <a class="nav-item active" href="user.html">マイページ</a>
                     <a class="nav-item" href="config.html">設定</a>
-                    <a type="button" class="btn btn-outline-primary nav-item btn-lg"  role="button" href="#">投稿</a>
+                    <a type="button" class="btn btn-outline-primary nav-item btn-block btn-lg btn-tweet"  role="button" href="#">投稿</a>
             </footer>
             
                     <!---①ここから--->
