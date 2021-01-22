@@ -61,6 +61,11 @@ public class CommentController {
         return "show-comment";
     }
 
+    @DeleteMapping("/comment/{commentId}/delete")
+    public void deleteComment(@PathVariable int commentId) {
+        commentService.delete(commentId);
+    }
+
     @GetMapping("{userId}/mypage")
     public String showAccount(@PathVariable String userId, Model model) {
         if (accountService.findById(userId) == null) {
@@ -84,18 +89,19 @@ public class CommentController {
     post: フロントエンド側から受け取る処理
  */
 @RestController
+@RequestMapping("rest-api/")
 class RestCommentController {
     @Autowired
     private CommentService commentService;
 
     //userIdを渡す
-    @GetMapping("rest-api/login-user-id/get")
+    @GetMapping("login-user-id/get")
     public String getLoginUserId(@AuthenticationPrincipal LoginUser loginUser) {
         return loginUser.getUserId();
     }
 
     //全てのコメントを渡す
-    @GetMapping("rest-api/all-comment/get")
+    @GetMapping("all-comment/get")
     public List<Comment> getAllComments() {
         List<Comment> list = commentService.findAll();
         list.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
@@ -103,7 +109,7 @@ class RestCommentController {
     }
 
     //特定のユーザーの全てのコメントを渡す
-    @GetMapping("rest-api/user-comment/{userId}/get")
+    @GetMapping("user-comment/{userId}/get")
     public List<Comment> getUserComments(@PathVariable String userId) {
         List<Comment> list = commentService.findByUser(userId);
         list.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
@@ -111,13 +117,19 @@ class RestCommentController {
     }
 
     //特定のコメントを渡す
-    @GetMapping("rest-api/comment/{commentId}/get")
+    @GetMapping("comment/{commentId}/get")
     public Comment getComment(@PathVariable int commentId) {
         return commentService.findById(commentId);
     }
 
+    //特定のコメントを渡す
+    @DeleteMapping("comment/{commentId}/delete")
+    public void deleteComment(@PathVariable int commentId) {
+        commentService.delete(commentId);
+    }
+
     //特定のコメントのリプライ状況を渡す
-    @GetMapping("rest-api/reply-comment/{commentId}/get")
+    @GetMapping("reply-comment/{commentId}/get")
     public List<Comment> getAllReplyComments(@PathVariable int commentId) {
         List<Comment> list = commentService.findByReplyParentId(commentId);
         list.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
@@ -125,7 +137,7 @@ class RestCommentController {
     }
 
     //新しいコメントを受け取る
-    @PostMapping(value="rest-api/comment/post", produces = "application/json")
+    @PostMapping(value="comment/post", produces = "application/json")
     public void commentNew(@RequestBody String inputText) {
         //Ajax通信で受け取ったjsonをオブジェクトに変換
         ObjectMapper mapper = new ObjectMapper();

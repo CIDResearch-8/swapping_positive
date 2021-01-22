@@ -1,6 +1,20 @@
 Vue.component('comment-view', {
     props: {
-        comment: Object
+        comment: Object,
+        nowLoginUser: String
+    },
+    methods: {
+        submit: function(comment) {
+            axios
+                .delete('/rest-api/comment/' + comment.commentId + '/delete')
+                .then(() => {
+                    console.log("success delete");
+                    this.inputText = '';
+                })
+                .catch(err => {
+                    console.log('submit error');
+                });
+        }
     },
     template: '<div>' +
                 '<div class="comment-block" :key="comment.commentId">' +
@@ -8,14 +22,13 @@ Vue.component('comment-view', {
                         '<img class="d-flex align-self-start mr-3" :src="comment.iconUri" :href="comment.iconUri" height="50" weight="50" >' +
                         '<div class="media-body">' +
                             '<div class="d-flex">' +
-                                '<h5 class="p-2 flex-grow-1 mt-0"><a class="text-dark" :href="\'/\' + comment.userId + \'/mypage\'">{{comment.username}}</a></h5>' +
+                                '<h5 class="p-2 flex-grow-1 mt-0"><a class="text-dark" :href="\'/\' + comment.userId + \'/mypage\'" method="delete">{{comment.username}}</a></h5>' +
                                 '<div class="p-2 float-right">' +
                                   '<button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
                                     '<span class="material-icons"> more_vert </span>' +
                                   '</button>' +
                                   '<div class="dropdown-menu" aria-labelledby="dropdownMenu1">' +
-                                    '<a class="dropdown-item" href="#!" :class="{disabled: comment.userId == this.loginUser}">Action</a>' +
-                                    '{{this.loginUser}} and {{comment.userId}}'+
+                                    '<button type="button" class="dropdown-item btn btn-link" data-toggle="modal" data-target="#exampleModal" :href="\'/comment/\' + comment.commentId + \'/delete\'" :class="{disabled: comment.userId != nowLoginUser}">コメントの削除</button>' +
                                   '</div>' +
                                 '</div>' +
                             '</div>' +
@@ -27,9 +40,26 @@ Vue.component('comment-view', {
                                     '<span class="material-icons">chat</span>' +
                                     '{{comment.replies.length}}' +
                                 '</a>' +
-                                '<span class="text-secondary float-right">{{comment.date}}</span>' +
+                                '<span class="text-secondary float-right mr-1">{{comment.date}}</span>' +
                             '</div>' +
                         '</div>' +
+                   '</div>' +
+                   '<!-- Modal -->' +
+                   '<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">' +
+                     '<div class="modal-dialog" role="document">' +
+                       '<div class="modal-content">' +
+                         '<div class="modal-header">' +
+                         '<h5 class="modal-title" id="exampleModalLabel">本当にコメントを削除しますか？</h5>' +
+                           '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                             '<span aria-hidden="true">&times;</span>' +
+                           '</button>' +
+                         '</div>' +
+                         '<div class="modal-footer" >' +
+                           '<input type="button" class="btn btn-secondary" data-dismiss="modal" value="しない">' +
+                           '<a href="" @click="submit(comment)" class="btn btn-primary">削除する</a>' +
+                         '</div>' +
+                       '</div>' +
+                     '</div>' +
                    '</div>' +
                 '</div>' +
               '</div>'
@@ -117,8 +147,8 @@ var app = new Vue({
             axios
                 .get('/rest-api/login-user-id/get')
                 .then(response => {
-                    this.userId = response.data;
-                    console.log('getting user id is' + this.userId);
+                    this.loginUser = response.data;
+                    console.log('getting user id is ' + this.loginUser);
                 })
                 .catch(err => {
                     console.log('get error');

@@ -14,7 +14,7 @@
     <p th:if="${commentError}">ユーザーID、パスワードが空です。</p>
 
     <div class="comment-view">
-        <comment-view v-for="comment in comments" :comment="comment">
+        <comment-view v-for="comment in comments" :comment="comment" :now-login-user="loginUser">
         </comment-view>
     </div>
 
