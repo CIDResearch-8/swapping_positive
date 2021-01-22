@@ -2,26 +2,30 @@
 <html lang="ja">
     <head>
     <meta charset="UTF-8">
-        <title>マイページ</title>
+        <title>ホーム</title>
         <link href="../static/css/bootstrap.min.css" rel="stylesheet">
         <style>
-            body {
-                padding-top: 100px;
-                padding-bottom:250px;
-            }
-            
-            container-fluid{
-                padding:0px;
-            }
-            
             .navbar{
                 flex-direction: column !important;
                 padding:0px;
             }
             
+            .sm-a{
+                font-weight:bold;
+                color:black;
+                font-size:3rem;
+                padding:5px;
+            }
+            
+            .lg-a{
+                font-weight:bold;
+                color:black;
+                font-size:1.4rem;
+                padding:5px;
+            }
+            
             .active{
                 color:#1DA1F2;
-
             }
             
             .fixed-top{
@@ -30,30 +34,34 @@
                 padding-top: 0px;
             }
             
+            .fixed-side{
+                position: fixed;
+                font-size:20px;
+                letter-spacing:5px;
+            }
+            
             .nav-item:hover {
                 background-color:rgba(29,161,242,0.3);
                 text-decoration: none;
                 color:#1DA1F2;
             }
             
-            a{
-                font-weight:bold;
-                color:black;
-                font-size:3rem;
-                padding:5px;
-            }
-             
             .block{
                 padding:0px;
                 border:0px;
             }
             
-            .name{
-                font-weight: bolder;
+            .sm-name{
+                font-weight: bold;
                 font-size: 3rem;
             }
             
-            .text{
+            .lg-name{
+                font-weight: bold;
+                font-size:1.4rem;
+            }
+            
+            .sm-text{
                 font-size:2rem;
                 padding:3px;
             }
@@ -65,41 +73,39 @@
             }
             
             .btn-tweet{
-                font-size:3rem;
+                font-size:1.8rem;
             }
         </style>
     </head>
     <body>
     <!–タイムライン->
-        <div class="container-fluid">
+        <div class="container-fluid d-lg-none d-block" style="padding-top:100px; padding-bottom:165px;">
             <nav class="navbar fixed-top">
                 <div class="container-fluid block">
-                    <div class="col-12 py-4 border" style ="background-color: white; font-size: 3rem;">MY PAGE</div>
+                    <div class="w-100 py-4 border" style ="background-color: white; font-size: 3rem;">HOME</div>
                 </div>
             </nav>
-            <!---メニューバー--->
-            <div class="w-100" style="height:0px;">
+            <!---ログアウトボタン--->
+            <div class="w-100 d-lg-none" style="height:0px;">
                 <a type="button" class="btn" role="button"  href="config.html">
                     <img src="../image/logout.png" class="img-thumbnail rounded-circle fixed-bottom" style="width:120px; height:120px; margin-bottom:175px; margin-left:auto; margin-right:20px;">
                 </a>
             </div>
-            
-            <footer class ="fixed-bottom" style ="background-color:white">
-                    <a class="nav-item" href="home.html">ホーム</a>
-                    <a class="nav-item" href="home.html">ニュース</a>
-                    <a class="nav-item active" href="user.html">マイページ</a>
-                    <a class="nav-item" href="config.html">設定</a>
-                    <a type="button" class="btn btn-outline-primary nav-item btn-block btn-lg btn-tweet"  role="button" href="#">投稿</a>
-            </footer>
-            
+                <!---サイドバー--->
+                <footer class ="fixed-bottom" style ="background-color:white">
+                        <a class="nav-item sm-a" href="home.html">ホーム</a>
+                        <a class="nav-item sm-a active" href="user.html">マイページ</a>
+                        <a class="nav-item sm-a" href="config.html">設定</a>
+                        <a type="button" class="btn btn-outline-primary nav-item btn-lg btn-block btn-tweet" role="button" href="#">投稿</a>
+                </footer>
                     <!---①ここから--->
             <div id ="timeline-block">
                 <div class ="row border">
                     <div class ="col-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
                         <div class ="col-11">
                             <div class="row">
-                                <div class= "col-2 block name">name</div>
-                                <div class= "col-12 block text">テキストああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
+                                <div class= "col-2 block sm-name">name</div>
+                                <div class= "col-12 block sm-text">テキストああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
                             </div>
                         </div>
                     </div>
@@ -109,9 +115,9 @@
                 <div class ="row border">
                     <div class ="col-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
                     <div class ="col-11">
-                       <div class="row">
-                            <div class= "col-2 block name">name</div>
-                            <div class= "col-12 block text">テキストああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
+                        <div class="row">
+                            <div class= "col-2 block sm-name">name</div>
+                            <div class= "col-12 block sm-text">テキストああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
                         </div>
                     </div>
                 </div>
@@ -120,9 +126,9 @@
                 <div class ="row border">
                     <div class ="col-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
                     <div class ="col-11">
-                       <div class="row">
-                            <div class= "col-2 block name">name</div>
-                            <div class= "col-12 block text">テキストああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
+                        <div class="row">
+                            <div class= "col-2 block sm-name">name</div>
+                            <div class= "col-12 block sm-text">テキストああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
                         </div>
                     </div>
                 </div>
@@ -131,9 +137,9 @@
                 <div class ="row border">
                     <div class ="col-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
                     <div class ="col-11">
-                       <div class="row">
-                            <div class= "col-2 block name">name</div>
-                            <div class= "col-12 block text">テキストああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
+                        <div class="row">
+                            <div class= "col-2 block sm-name">name</div>
+                            <div class= "col-12 block sm-text">テキストああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
                         </div>
                     </div>
                 </div>
@@ -142,9 +148,9 @@
                 <div class ="row border">
                     <div class ="col-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
                     <div class ="col-11">
-                       <div class="row">
-                            <div class= "col-2 block name">name</div>
-                            <div class= "col-12 block text">テキストああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
+                        <div class="row">
+                            <div class= "col-2 block sm-name">name</div>
+                            <div class= "col-12 block sm-text">テキストああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
                         </div>
                     </div>
                 </div>
@@ -152,10 +158,121 @@
             <div id ="timeline-block">
                 <div class ="row border">
                     <div class ="col-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
-                    <div class ="col-11">
-                       <div class="row">
-                            <div class= "col-2 block name">name</div>
-                            <div class= "col-12 block text">テキストああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
+                        <div class ="col-11">
+                            <div class="row">
+                                <div class= "col-2 block sm-name">name</div>
+                                <div class= "col-12 block sm-text">テキストああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="container d-none d-lg-block" style="padding-top:52px; padding-bottom:10px;">
+            <nav class="navbar fixed-top">
+                <div class="container-lg block">
+                    <div class="col-lg-6 offset-lg-3 border" style ="background-color: white">HOME</div>
+                </div>
+            </nav>
+            <div class="row">
+                <!---サイドバー--->
+                <div class ="col-lg-3">
+                    <nav class="navbar fixed-side" style ="background-color:white">
+                            <a class="nav-item w-100 text-center m-1 lg-a" href="home.html">ホーム</a>
+                            <a class="nav-item active w-100 text-center m-1 lg-a" href="user.html">マイページ</a>
+                            <a class="nav-item w-100 text-center m-1 lg-a" href="home.html">設定</a>
+                            <a type="button" class="btn btn-outline-primary nav-item btn-block btn-tweet m-1" role="button" href="#">投稿</a>
+                    </nav>
+                </div>
+                <div class ="col-lg-6 h-100">
+                    <!---①ここから--->
+                    <div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-lg-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-lg-11">
+                                <div class="row">
+                                    <div class= "col-lg-2 block lg-name">name</div>
+                                    <div class= "col-lg-12 block">テキスト</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---①ここまでが一つの投稿--->
+                    <div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-lg-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-lg-11">
+                                <div class="row">
+                                    <div class= "col-lg-2 block lg-name">name</div>
+                                    <div class= "col-lg-12 block">テキスト</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-lg-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-lg-11">
+                                <div class="row">
+                                    <div class= "col-lg-2 block lg-name">name</div>
+                                    <div class= "col-lg-12 block">テキスト</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-lg-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-lg-11">
+                                <div class="row">
+                                    <div class= "col-lg-2 block lg-name">name</div>
+                                    <div class= "col-lg-12 block">テキスト</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-lg-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-lg-11">
+                                <div class="row">
+                                    <div class= "col-lg-2 block lg-name">name</div>
+                                    <div class= "col-lg-12 block">テキスト</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-lg-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-lg-11">
+                                <div class="row">
+                                    <div class= "col-lg-2 block lg-name">name</div>
+                                    <div class= "col-lg-12 block">テキスト</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-lg-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-lg-11">
+                                <div class="row">
+                                    <div class= "col-lg-2 block lg-name">name</div>
+                                    <div class= "col-lg-12 block">テキストあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id ="timeline-block">
+                        <div class ="row border-right border-bottom border-left">
+                            <div class ="col-lg-1 icon"><img src="#" class="img-fluid rounded-circle center-block"></div>
+                            <div class ="col-lg-11">
+                                <div class="row">
+                                    <div class= "col-lg-2 block lg-name">name</div>
+                                    <div class= "col-lg-12 block">テキスト</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
