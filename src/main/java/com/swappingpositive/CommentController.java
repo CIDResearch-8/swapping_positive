@@ -11,7 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Objects;
+import java.util.*;
 
 @Controller
 public class CommentController {
@@ -57,29 +57,87 @@ public class CommentController {
             return "error/comment-not-found";
         }
         model.addAttribute("comment", commentService.findById(commentId));
+        model.addAttribute("replies", commentService.findByReplyParentId(commentId));
         return "show-comment";
+    }
+
+    @DeleteMapping("/comment/{commentId}/delete")
+    public void deleteComment(@PathVariable int commentId) {
+        commentService.delete(commentId);
+    }
+
+    @GetMapping("{userId}/mypage")
+    public String showAccount(@PathVariable String userId, Model model) {
+        if (accountService.findById(userId) == null) {
+            return "error/user-not-found";
+        }
+        model.addAttribute("comments", commentService.findByUser(userId));
+        return "mypage";
     }
 
     @GetMapping("/user/home")
     public String showTimeline(Model model) {
         model.addAttribute("comments", commentService.findAll());
+        model.addAttribute("service", commentService);
         return "timeline";
     }
 
 }
 
+/*
+    get: フロントエンド側へ渡す処理
+    post: フロントエンド側から受け取る処理
+ */
 @RestController
+@RequestMapping("rest-api/")
 class RestCommentController {
     @Autowired
     private CommentService commentService;
 
-    //フロントエンド側へuserIdを渡すための処理
-    @GetMapping("rest-api/login-user-id/get")
+    //userIdを渡す
+    @GetMapping("login-user-id/get")
     public String getLoginUserId(@AuthenticationPrincipal LoginUser loginUser) {
         return loginUser.getUserId();
     }
 
-    @PostMapping(value="rest-api/comment/post", produces = "application/json")
+    //全てのコメントを渡す
+    @GetMapping("all-comment/get")
+    public List<Comment> getAllComments() {
+        List<Comment> list = commentService.findAll();
+        list.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
+        return list;
+    }
+
+    //特定のユーザーの全てのコメントを渡す
+    @GetMapping("user-comment/{userId}/get")
+    public List<Comment> getUserComments(@PathVariable String userId) {
+        List<Comment> list = commentService.findByUser(userId);
+        list.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
+        return list;
+    }
+
+    //特定のコメントを渡す
+    @GetMapping("comment/{commentId}/get")
+    public Comment getComment(@PathVariable int commentId) {
+        return commentService.findById(commentId);
+    }
+
+    //特定のコメントを渡す
+    @DeleteMapping("comment/{commentId}/delete")
+    public void deleteComment(@PathVariable int commentId) {
+        commentService.delete(commentId);
+    }
+
+    //特定のコメントのリプライ状況を渡す
+    @GetMapping("reply-comment/{commentId}/get")
+    public List<Comment> getAllReplyComments(@PathVariable int commentId) {
+        List<Comment> list = commentService.findByReplyParentId(commentId);
+        list.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
+        return list;
+    }
+
+    //新しいコメントを受け取る
+    @PostMapping(value="comment/post", produces = "application/json")
     public void commentNew(@RequestBody String inputText) {
         //Ajax通信で受け取ったjsonをオブジェクトに変換
         ObjectMapper mapper = new ObjectMapper();

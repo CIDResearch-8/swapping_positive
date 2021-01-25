@@ -52,4 +52,24 @@ public class AccountService implements UserDetailsService {
             throw new UsernameNotFoundException("ユーザーが存在しません");
         }
     }
+    //アカウントアイコンの変更
+    public void updateAccountIcon(IconForm source, String userId){
+        if (!accountDao.updateByPrimaryKey("icon_uri", source.toDataUri(), userId)) {
+            throw new UsernameNotFoundException("ユーザーが存在しません");
+        }
+    }
+
+    //ユーザー名の変更
+    public void updateUsername(UsernameForm source, String userId){
+        if (!accountDao.updateByPrimaryKey("username", source.getUsername(), userId)) {
+            throw new UsernameNotFoundException("ユーザーが存在しません");
+        }
+    }
+
+    //メールアドレスの変更
+    public void updateEmail(EmailForm source, String userId){
+        if (!accountDao.updateByPrimaryKey("email", source.getEmail(), userId)) {
+            throw new UsernameNotFoundException("ユーザーが存在しません");
+        }
+    }
 }

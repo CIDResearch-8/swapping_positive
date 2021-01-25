@@ -5,6 +5,7 @@ import java.util.*;
 import com.swappingpositive.fizzy.Dao;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,9 +22,8 @@ public class AccountDao implements Dao<Account> {
 
     @Override
     public List<Account> selectByColumn(String columnName, Object value) {
-        final String FORMATTED_COLUMN_NAME = String.format("%s", columnName);
         return jdbcTemplate
-                .query("SELECT * FROM account WHERE " + FORMATTED_COLUMN_NAME + " = ?",
+                .query(String.format("SELECT * FROM account WHERE %s = ?", columnName),
                         //BeanPropertyRowMapperで自動的に
                         //データベースのカラムとJavaのフィールドを一致させる
                         new BeanPropertyRowMapper<>(Account.class), value);
@@ -60,11 +60,12 @@ public class AccountDao implements Dao<Account> {
     public boolean insert(@NonNull Account account) {
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         try {
-            jdbcTemplate.update("INSERT INTO account VALUES (?, ?, ?, ?)",
+            jdbcTemplate.update("INSERT INTO account VALUES (?, ?, ?, ?, ?)",
                     account.getUserId(),
                     account.getUsername(),
                     account.getPassword(),
-                    account.getEmail());
+                    account.getEmail(),
+                    account.getIconUri());
         }
         catch (DuplicateKeyException e) {
             return false;
@@ -81,5 +82,17 @@ public class AccountDao implements Dao<Account> {
     @Override
     public List<Account> selectAll() {
         return jdbcTemplate.query("SELECT * FROM account", new BeanPropertyRowMapper<>(Account.class));
+    }
+
+    //更新
+    @Override
+    public boolean updateByPrimaryKey(String columnName, Object source ,Object key) {
+        try {
+            jdbcTemplate.update(String.format("UPDATE account SET %s = ? WHERE user_id = ?", columnName), source, key);
+            return true;
+        }
+        catch(DataAccessException e){
+            return false;
+        }
     }
 }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>comment</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" />
+</head>
+
+<body>
+<div class="container">
+    <h2>comment</h2>
+
+    <p th:if="${commentError}">ユーザーID、パスワードが空です。</p>
+
+    <form action="#" th:action="@{/config-username}" th:object="${usernameForm}" class="form-horizontal text-control-config" method="post">
+        <div class="form-group">
+            <div>あなたは{{ userId }}さんですね。表示名を変更する場合はここに入力してください。</div>
+            <input type="text" class="form-control" th:field="*{username}"  v-model="inputText"
+                      :class="{ 'is-invalid': isEmpty }">
+            <div class="invalid-feedback">何か文字を入力してください</div>
+            <input type="submit" class="btn btn-outline-primary float-right" v-bind:disabled=isEmpty value="Save">
+        </div>
+    </form>
+
+    <form action="#" th:action="@{/config-email}" th:object="${emailForm}" class="form-horizontal text-control-config" method="post">
+        <div class="form-group">
+            <div>Emailアドレスを変更する場合はここに入力してください。</div>
+            <input type="text" class="form-control" th:field="*{email}"  v-model="inputText"
+                   :class="{ 'is-invalid': isEmpty }">
+            <div class="invalid-feedback">何か文字を入力してください</div>
+            <input type="submit" class="btn btn-outline-primary float-right" v-bind:disabled=isEmpty value="Save">
+        </div>
+    </form>
+
+    <form action="#" th:action="@{/config-icon}" th:object="${iconForm}" class="form-horizontal text-control-config" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <div>アイコンを変更する場合はファイルを選択してください（jpgのみ・100KB以内）</div>
+            <input type="file" class="form-control" th:field="*{icon}"  v-model="inputText"
+                   :class="{ 'is-invalid': isEmpty }">
+            <div class="invalid-feedback">何か文字を入力してください</div>
+            <input type="submit" class="btn btn-outline-primary float-right" v-bind:disabled=isEmpty value="Save">
+        </div>
+    </form>
+
+</div>
+
+<script th:src="@{/webjars/vue/2.6.11/vue.js}"></script>
+<script th:src="@{/webjars/axios/0.21.0/dist/axios.min.js}"></script>
+<script th:src="@{/js/config.js}"></script>
+
+</body>
+</html>

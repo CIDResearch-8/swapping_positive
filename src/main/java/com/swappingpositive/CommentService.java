@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-
 @Service
 @Component
 public class CommentService {
@@ -26,15 +25,19 @@ public class CommentService {
         return dao.selectByPrimaryKey(id);//タイムライン表示
     }
 
+    public List<Comment> findByReplyParentId(int id) {
+        return dao.selectByColumn("reply_parent_id",id);//タイムライン表示
+    }
+
     public List<Comment> findAll() {
         return dao.selectAll();//タイムライン表示
     }
 
-    public Comment findByUser(String userId) {
-        return new Comment();//ユーザーページのツイート
+    public List<Comment> findByUser(String userId) {
+        return dao.selectByColumn("user_id", userId);//ユーザーページのツイート
     }
 
-    public void delete(int comment_id) {
-        dao.delete(comment_id);//ツイートの削除
+    public void delete(int commentId) {
+        dao.delete(commentId);//ツイートの削除
     }
 }
