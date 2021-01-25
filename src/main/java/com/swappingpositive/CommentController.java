@@ -66,12 +66,12 @@ public class CommentController {
         commentService.delete(commentId);
     }
 
-    @GetMapping("{userId}/mypage")
-    public String showAccount(@PathVariable String userId, Model model) {
-        if (accountService.findById(userId) == null) {
+    @GetMapping("/mypage")
+    public String showAccount(@AuthenticationPrincipal LoginUser loginUser, Model model) {
+        if (accountService.findById(loginUser.getUserId()) == null) {
             return "error/user-not-found";
         }
-        model.addAttribute("comments", commentService.findByUser(userId));
+        model.addAttribute("comments", commentService.findByUser(loginUser.getUserId()));
         return "mypage";
     }
 
