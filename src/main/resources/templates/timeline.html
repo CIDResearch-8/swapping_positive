@@ -4,33 +4,210 @@
     <title>タイムライン</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" media="all" th:href="@{/css/style.css}"/>
     <link rel="stylesheet" media="all" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.css}" />
+    <style>
+            .navbar{
+                flex-direction: column !important;
+                padding:0px;
+            }
+
+            .sm-a{
+                font-weight:bold;
+                color:black;
+                font-size:3rem;
+                padding:5px;
+            }
+
+            .lg-a{
+                font-weight:bold;
+                color:black;
+                font-size:1.4rem;
+                padding:5px;
+            }
+
+            .active{
+                color:#1DA1F2;
+            }
+
+            .fixed-top{
+                height:　50px;
+                line-height: 50px;
+                padding-top: 0px;
+            }
+
+            .fixed-side{
+                position: fixed;
+                font-size:20px;
+                letter-spacing:5px;
+            }
+
+            .nav-item:hover {
+                background-color:rgba(29,161,242,0.3);
+                text-decoration: none;
+                color:#1DA1F2;
+            }
+
+            .block{
+                padding:0px;
+                border:0px;
+            }
+
+            .sm-name{
+                font-weight: bold;
+                font-size: 3rem;
+            }
+
+            .lg-name{
+                font-weight: bold;
+                font-size:1.4rem;
+            }
+
+            .sm-text{
+                font-size:2rem;
+                padding:3px;
+            }
+
+            .icon{
+                padding:3px;
+                width:100px;
+                height:100px;
+            }
+
+            .btn-tweet{
+                font-size:1.8rem;
+            }
+        </style>
 </head>
 
 <body>
-<div class="container">
-    <h2 class="mb-5">タイムライン</h2>
-
-    <p th:if="${commentError}">ユーザーID、パスワードが空です。</p>
-
-    <div class="comment-view">
-        <comment-view v-for="comment in comments" :comment="comment" :now-login-user="loginUser">
-        </comment-view>
+<!--タイムライン-->
+<div class="container-fluid d-lg-none d-block" style="padding-top:100px; padding-bottom:165px;">
+    <nav class="navbar fixed-top">
+        <div class="container-fluid block">
+            <div class="w-100 py-4 border" style ="background-color: white; font-size: 3rem;">HOME</div>
+        </div>
+    </nav>
+    <!---ログアウトボタン--->
+    <div class="w-100 d-lg-none" style="height:0px;">
+        <a type="button" class="btn" role="button"  href="config.html">
+            <img src="../image/logout.png" class="img-thumbnail rounded-circle fixed-bottom" style="width:120px; height:120px; margin-bottom:175px; margin-left:auto; margin-right:20px;">
+        </a>
     </div>
+    <!---サイドバー--->
+    <footer class ="fixed-bottom" style ="background-color:white">
+        <a class="nav-item sm-a active" href="home.html">ホーム</a>
+        <a class="nav-item sm-a" href="user.html">マイページ</a>
+        <a class="nav-item sm-a" href="config.html">設定</a>
+        <a type="button" class="btn btn-outline-primary nav-item btn-lg btn-block btn-tweet" role="button" data-toggle="modal" data-target="#commentModal-sm">投稿</a>
+    </footer>
+    <!---①ここから--->
+    <div class="timeline-block">
+        <div class="comment-view-sm">
+            <comment-view-sm v-for="comment in comments" :comment="comment" :now-login-user="loginUser">
+            </comment-view-sm>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal comment-modal" id="commentModal-sm" tabindex="-1" role="dialog" aria-labelledby="commentModal-sm" aria-hidden="true">
+    <div class="modal-dialog" role="document">' +
+        <form class="modal-content text-control-sm" action="#" method="post">
+            <div class="modal-header">
+                <div class="form-group">
+                    <textarea class="form-control" v-model="inputText" cols="55"
+                              maxlength="500" :class="{ 'is-invalid': isEmpty }" @keydown.ctrl.enter.prevent="submit"></textarea>
+                    <div class="invalid-feedback">何か文字を入力してください</div>
+                </div>
+            </div>
+            <div class="modal-footer" >
+                <span class="badge badge-info float-right m-2">Ctrl + Enter : 送信</span>
+                <span class="form-group">
+                    <input type="button" class="btn btn-secondary mr-1" data-dismiss="modal" value="キャンセル">
+                    <button class="btn btn-outline-primary float-right" type="button" @click="submit" v-bind:disabled=isEmpty>Save</button>
+                </span>
+            </div>
+        </form>
+    </div>
+    </div>
+    <!---①ここまでが一つの投稿--->
+</div>
 
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle"
-                type="button" id="dropdownMenu1" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-            Dropdown
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <a class="dropdown-item" href="#!">Action</a>
-            <a class="dropdown-item" href="#!">Another action</a>
+<div class="container d-none d-lg-block" style="padding-top:52px; padding-bottom:10px;">
+    <nav class="navbar fixed-top">
+        <div class="container-lg block">
+            <div class="col-lg-6 offset-lg-3 border" style ="background-color: white">HOME</div>
+        </div>
+    </nav>
+    <div class="row">
+        <!---サイドバー--->
+        <div class ="col-lg-3">
+            <nav class="navbar fixed-side" style ="background-color:white">
+                <a class="nav-item active w-100 text-center m-1 lg-a" href="/user/home">ホーム</a>
+                <a class="nav-item w-100 text-center m-1 lg-a" href="/mypage">マイページ</a>
+                <a class="nav-item w-100 text-center m-1 lg-a" href="/config">設定</a>
+                <a type="button" class="btn btn-outline-primary nav-item btn-block btn-tweet m-1" role="button" data-toggle="modal" data-target="#commentModal">投稿</a>
+            </nav>
+        </div>
+        <div class ="col-lg-6 h-100">
+            <!---①ここから--->
+            <div class="timeline-block">
+                <div class="comment-view">
+                    <comment-view v-for="comment in comments" :comment="comment" :now-login-user="loginUser">
+                    </comment-view>
+                </div>
+            </div>
+            <!---①ここまでが一つの投稿--->
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal comment-modal text-control" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">' +
+            <form class="modal-content text-control" action="#" method="post">
+                <div class="modal-header">
+                    <div class="form-group">
+                    <textarea class="form-control" cols="55" v-model="inputText"
+                              maxlength="500" :class="{ 'is-invalid': isEmpty }" @keydown.ctrl.enter.prevent="submit"></textarea>
+                        <div class="invalid-feedback">何か文字を入力してください</div>
+                    </div>
+                </div>
+                <div class="modal-footer" >
+                    <span class="badge badge-info float-right m-2">Ctrl + Enter : 送信</span>
+                    <span class="form-group">
+                        <input type="button" class="btn btn-secondary mr-2" data-dismiss="modal" value="キャンセル">
+                        <button class="btn btn-outline-primary float-right" type="button" @click="submit" v-bind:disabled=isEmpty>Save</button>
+                    </span>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
+<!--<div class="container">-->
+<!--    <h2 class="mb-5">タイムライン</h2>-->
+
+<!--    <p th:if="${commentError}">ユーザーID、パスワードが空です。</p>-->
+
+<!--    <div class="comment-view">-->
+<!--        <comment-view v-for="comment in comments" :comment="comment" :now-login-user="loginUser">-->
+<!--        </comment-view>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+<!--<div class ="row border-right border-bottom border-left">-->
+<!--    <div class ="col-lg-1 icon"><img :src="comment.iconUri" :href="comment.iconUri" height="50" weight="50" class="img-fluid rounded-circle center-block"></div>-->
+<!--    <div class ="col-lg-11">-->
+<!--        <div class="row">-->
+<!--            <div class= "col-lg-2 block lg-name"><a class="text-dark" :href="\'/\' + comment.userId + \'/mypage\'">{{comment.username}}</a></div>-->
+<!--            <div class= "col-lg-12 block"><a :href="\'/\' + comment.userId + \'/comment/\' + comment.commentId"></a></div>-->
+<!--        </div>-->
+<!--        <a class="text-dark" :href="\'/\' + comment.userId + \'/comment/\' + comment.commentId">-->
+<!--            <span class="material-icons">chat</span>-->
+<!--                {{comment.replies.length}}-->
+<!--            </a>-->
+<!--        <span class="text-secondary float-right mr-1">{{comment.date}}</span>-->
+<!--    </div>-->
+<!--</div>-->
 
 <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -38,6 +215,10 @@
 <script th:src="@{/webjars/vue/2.6.11/vue.js}"></script>
 <script th:src="@{/webjars/axios/0.21.0/dist/axios.min.js}"></script>
 <script th:src="@{/js/timeline.js}"></script>
+<script th:src="@{/js/timeline-sm.js}"></script>
+<script th:src="@{/js/comment-form.js}"></script>
+<script th:src="@{/js/comment-form-sm.js}"></script>
+
 
 </body>
 </html>

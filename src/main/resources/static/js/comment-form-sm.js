@@ -1,5 +1,5 @@
 var app = new Vue({
-    el: '.text-control',
+    el: '.text-control-sm',
     data() {
         return {
             isButtonDisabled: false,
@@ -44,6 +44,6 @@ var app = new Vue({
                         console.log('submit error');
                     });
             }
-        },
+        }
     }
 })

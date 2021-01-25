@@ -28,27 +28,31 @@ var app = new Vue({
     el: '.comment-view',
     data() {
         return {
+            loginUser: "",
             comments: [],
             intervalId: undefined
        }
     },
     mounted() {
-        this.repeatAllCommentGet();
+        axios
+            .get('/rest-api/login-user-id/get')
+            .then(response => {
+                this.loginUser = response.data;
+                console.log('getting login user ' + this.loginUser);
+                this.repeatAllCommentGet(this.loginUser);
+            })
+            .catch(err => {
+                console.log('get error');
+        });
     },
     beforeDestroy () {
         console.log('clearInterval');
         clearInterval(this.intervalId);
     },
     methods: {
-        repeatAllCommentGet: function() {
-            var pathUserId = '';
-            var path = location.pathname;
-            var regex = '/[A-Za-z0-9_-]*/';
-            pathUserId = path.match(regex);
-            console.log(pathUserId);
-
+        repeatAllCommentGet: function(loginUser) {
             axios
-                .get('/rest-api/user-comment' + pathUserId + 'get')
+                .get('/rest-api/user-comment/' + loginUser + '/get')
                 .then(response => {
                     this.comments = response.data;
                     this.comments.forEach(comment => {
