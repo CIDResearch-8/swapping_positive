@@ -12,7 +12,6 @@ public class CommentService {
 
     @Autowired
     private CommentDao dao;
-
     public void save(CommentForm form, String userId) {
         form.emptyToNullField();
         //ツイートをSQLに登録
@@ -21,8 +20,10 @@ public class CommentService {
                 form.getComment()));
     }
 
-    public Comment findById(int id) {
-        return dao.selectByPrimaryKey(id);//タイムライン表示
+    public Optional<Comment> findById(int id) {
+        Optional<Comment> commentId = Optional.ofNullable(dao.selectByPrimaryKey(id)); // 値をラップする
+
+        return commentId;//タイムライン表示
     }
 
     public List<Comment> findByReplyParentId(int id) {

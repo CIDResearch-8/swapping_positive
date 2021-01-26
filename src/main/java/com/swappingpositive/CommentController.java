@@ -51,14 +51,28 @@ public class CommentController {
         return comment(model);
     }
 
+    //コメントページを表示する処理
     @GetMapping("/{userId}/comment/{commentId}")
     public String showComment(@PathVariable String userId, @PathVariable Integer commentId, Model model) {
-        if (!commentService.findById(commentId).getUserId().equals(userId)) {
+        try {
+            if (!commentService.findById(commentId).orElse(null).getUserId().equals(userId)) {
+                return "error/comment-not-found";
+            }
+        }
+        catch (NullPointerException e) {
             return "error/comment-not-found";
         }
+
         model.addAttribute("comment", commentService.findById(commentId));
         model.addAttribute("replies", commentService.findByReplyParentId(commentId));
         return "show-comment";
+    }
+
+    //コメントページが見つからなかった時の処理
+    @RequestMapping("/comment-not-found")
+    public String commentNotFound(Model model) {
+        model.addAttribute("commentNotFound", true);
+        return comment(model);
     }
 
     @DeleteMapping("/comment/{commentId}/delete")
@@ -119,7 +133,7 @@ class RestCommentController {
     //特定のコメントを渡す
     @GetMapping("comment/{commentId}/get")
     public Comment getComment(@PathVariable int commentId) {
-        return commentService.findById(commentId);
+        return commentService.findById(commentId).orElse(null);
     }
 
     //特定のコメントを渡す
