@@ -1,4 +1,4 @@
-Vue.component('comment-view', {
+Vue.component('comment-view-sm', {
     props: {
         comment: Object,
         nowLoginUser: String
@@ -17,23 +17,23 @@ Vue.component('comment-view', {
         }
     },
     template: '<div>' +
-                '<div class="comment-block">' +
+                '<div class="comment-block" :key="comment.commentId">' +
                     '<div class ="row border-right border-bottom border-left">' +
-                        '<div class ="col-lg-1 icon"><img :src="comment.iconUri" :href="comment.iconUri" height="50" weight="50" class="img-fluid rounded-circle center-block"></div>' +
-                        '<div class ="col-lg-11">' +
+                        '<div class ="col-1 icon"><img :src="comment.iconUri" :href="comment.iconUri" height="50" weight="50" class="img-fluid rounded-circle center-block"></div>' +
+                        '<div class ="col-11">' +
                             '<div class="row">' +
-                                '<div class= "col-lg-12 block lg-name d-flex">' +
-                                    '<div class="p-2 flex-grow-1 mt-0"><a class="text-dark" :href="\'/\' + comment.userId + \'/mypage\'">{{comment.username}}</a></div>' +
-                                    '<div class="p-2 float-right">' +
-                                      '<button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                                '<div class= "col-12 block sm-name d-sm-flex flex-row">' +
+                                    '<div class="p-2 flex-grow-1"><a class="text-dark sm-name" :href="\'/\' + comment.userId + \'/mypage\'">{{comment.username}}</a></div>' +
+                                    '<div class="p-2">' +
+                                      '<button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
                                         '<span class="material-icons"> more_vert </span>' +
                                       '</button>' +
                                       '<div class="dropdown-menu" aria-labelledby="dropdownMenu1">' +
-                                        '<button type="button" class="dropdown-item btn btn-link" data-toggle="modal" data-target="#exampleModal" :href="\'/comment/\' + comment.commentId + \'/delete\'" :class="{disabled: comment.userId != nowLoginUser}">コメントの削除</button>' +
+                                        '<button type="button" class="dropdown-item btn btn-link" data-toggle="modal" data-target="#exampleModal-sm" :href="\'/comment/\' + comment.commentId + \'/delete\'" :class="{disabled: comment.userId != nowLoginUser}">コメントの削除</button>' +
                                       '</div>' +
                                     '</div>' +
                                 '</div>' +
-                                '<div class= "col-lg-12 block"><a :href="\'/\' + comment.userId + \'/comment/\' + comment.commentId" class="text-dark">{{comment.comment}}</a></div>' +
+                                '<div class= "col-12 block"><a :href="\'/\' + comment.userId + \'/comment/\' + comment.commentId" class="text-dark sm-text">{{comment.comment}}</a></div>' +
                             '</div>' +
                             '<a class="text-dark" :href="\'/\' + comment.userId + \'/comment/\' + comment.commentId">' +
                                 '<span class="material-icons">chat</span>' +
@@ -43,7 +43,7 @@ Vue.component('comment-view', {
                         '</div>' +
                     '</div>' +
                     '<!-- Modal -->' +
-                   '<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">' +
+                   '<div class="modal" id="exampleModal-sm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-sm" aria-hidden="true">' +
                      '<div class="modal-dialog" role="document">' +
                        '<div class="modal-content">' +
                          '<div class="modal-header">' +
@@ -54,7 +54,7 @@ Vue.component('comment-view', {
                          '</div>' +
                          '<div class="modal-footer" >' +
                            '<input type="button" class="btn btn-secondary" data-dismiss="modal" value="しない">' +
-                           '<a href="#!" @click="submit(comment.commentId)" class="btn btn-primary">削除する</a>' +
+                           '<a href="" @click="submit(comment)" class="btn btn-primary">削除する</a>' +
                          '</div>' +
                        '</div>' +
                      '</div>' +
@@ -64,7 +64,7 @@ Vue.component('comment-view', {
 });
 
 var app = new Vue({
-    el: '.comment-view',
+    el: '.comment-view-sm',
     data() {
         return {
             loginUser: "",
