@@ -4,12 +4,11 @@ Vue.component('comment-view', {
         nowLoginUser: String
     },
     methods: {
-        submit: function(comment) {
+        submit: function(commentId) {
             axios
-                .delete('/rest-api/comment/' + comment.commentId + '/delete')
+                .delete('/rest-api/comment/' + commentId + '/delete')
                 .then(() => {
-                    console.log("success delete");
-                    this.inputText = '';
+                    console.log(commentId + " success delete");
                 })
                 .catch(err => {
                     console.log('submit error');
@@ -17,12 +16,12 @@ Vue.component('comment-view', {
         }
     },
     template: '<div>' +
-                '<div class="comment-block" :key="comment.commentId">' +
+                '<div class="comment-block">' +
                     '<div class ="row border-right border-bottom border-left">' +
                         '<div class ="col-lg-1 icon"><img :src="comment.iconUri" :href="comment.iconUri" height="50" weight="50" class="img-fluid rounded-circle center-block"></div>' +
                         '<div class ="col-lg-11">' +
                             '<div class="row">' +
-                                '<div class= "col-lg-2 block lg-name d-flex">' +
+                                '<div class= "col-lg-12 block lg-name d-flex">' +
                                     '<div class="p-2 flex-grow-1 mt-0"><a class="text-dark" :href="\'/\' + comment.userId + \'/mypage\'">{{comment.username}}</a></div>' +
                                     '<div class="p-2 float-right">' +
                                       '<button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
@@ -54,7 +53,7 @@ Vue.component('comment-view', {
                          '</div>' +
                          '<div class="modal-footer" >' +
                            '<input type="button" class="btn btn-secondary" data-dismiss="modal" value="しない">' +
-                           '<a href="" @click="submit(comment)" class="btn btn-primary">削除する</a>' +
+                           '<a href="#!" @click="submit(comment.commentId)" class="btn btn-primary">削除する</a>' +
                          '</div>' +
                        '</div>' +
                      '</div>' +
@@ -80,7 +79,7 @@ var app = new Vue({
             if (document.visibilityState == 'visible') {
                 this.repeatAllCommentGet();
             }
-        }, 5000);
+        }, 10000);
     },
     beforeDestroy () {
         console.log('clearInterval');

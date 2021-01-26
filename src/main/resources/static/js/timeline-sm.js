@@ -23,9 +23,9 @@ Vue.component('comment-view-sm', {
                         '<div class ="col-1 icon"><img :src="comment.iconUri" :href="comment.iconUri" height="50" weight="50" class="img-fluid rounded-circle center-block"></div>' +
                         '<div class ="col-11">' +
                             '<div class="row">' +
-                                '<div class= "col-2 block sm-name d-flex">' +
-                                    '<div class="p-2 flex-grow-1 mt-0"><a class="text-dark sm-name" :href="\'/\' + comment.userId + \'/mypage\'">{{comment.username}}</a></div>' +
-                                    '<div class="p-2 float-right">' +
+                                '<div class= "col-12 block sm-name d-sm-flex flex-row">' +
+                                    '<div class="p-2 flex-grow-1"><a class="text-dark sm-name" :href="\'/\' + comment.userId + \'/mypage\'">{{comment.username}}</a></div>' +
+                                    '<div class="p-2">' +
                                       '<button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
                                         '<span class="material-icons"> more_vert </span>' +
                                       '</button>' +
@@ -80,7 +80,7 @@ var app = new Vue({
             if (document.visibilityState == 'visible') {
                 this.repeatAllCommentGet();
             }
-        }, 5000);
+        }, 10000);
     },
     beforeDestroy () {
         console.log('clearInterval');

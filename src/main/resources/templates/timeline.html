@@ -4,7 +4,6 @@
     <title>タイムライン</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" media="all" th:href="@{/css/style.css}"/>
     <link rel="stylesheet" media="all" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.css}" />
     <style>
             .navbar{
@@ -55,7 +54,7 @@
 
             .sm-name{
                 font-weight: bold;
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
 
             .lg-name{
@@ -104,7 +103,7 @@
     <!---①ここから--->
     <div class="timeline-block">
         <div class="comment-view-sm">
-            <comment-view-sm v-for="comment in comments" :comment="comment" :now-login-user="loginUser">
+            <comment-view-sm :key="comment.commentId" v-for="comment in comments" :comment="comment" :now-login-user="loginUser">
             </comment-view-sm>
         </div>
     </div>
@@ -113,6 +112,9 @@
     <div class="modal-dialog" role="document">' +
         <form class="modal-content text-control-sm" action="#" method="post">
             <div class="modal-header">
+                <h5 class="modal-title" id="commentModalLabel-sm">コメントを書く</h5>
+            </div>
+            <div class="modal-body">
                 <div class="form-group">
                     <textarea class="form-control" v-model="inputText" cols="55"
                               maxlength="500" :class="{ 'is-invalid': isEmpty }" @keydown.ctrl.enter.prevent="submit"></textarea>
@@ -152,7 +154,7 @@
             <!---①ここから--->
             <div class="timeline-block">
                 <div class="comment-view">
-                    <comment-view v-for="comment in comments" :comment="comment" :now-login-user="loginUser">
+                    <comment-view :key="comment.commentId" v-for="comment in comments" :comment="comment" :now-login-user="loginUser">
                     </comment-view>
                 </div>
             </div>
@@ -164,6 +166,9 @@
         <div class="modal-dialog" role="document">' +
             <form class="modal-content text-control" action="#" method="post">
                 <div class="modal-header">
+                    <h5 class="modal-title" id="commentModalLabel">コメントを書く</h5>
+                </div>
+                <div class="modal-body">
                     <div class="form-group">
                     <textarea class="form-control" cols="55" v-model="inputText"
                               maxlength="500" :class="{ 'is-invalid': isEmpty }" @keydown.ctrl.enter.prevent="submit"></textarea>
