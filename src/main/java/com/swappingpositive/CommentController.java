@@ -54,15 +54,14 @@ public class CommentController {
     //コメントページを表示する処理
     @GetMapping("/{userId}/comment/{commentId}")
     public String showComment(@PathVariable String userId, @PathVariable Integer commentId, Model model) {
-        try {
-            if (!commentService.findById(commentId).orElse(null).getUserId().equals(userId)) {
+        if (commentService.findById(commentId).isPresent()) {//コメントIDがnullじゃないか
+            if(!commentService.findById(commentId).get().getUserId().equals(userId)){//ユーザーIDが違うか
                 return "error/comment-not-found";
             }
         }
-        catch (NullPointerException e) {
+        else{
             return "error/comment-not-found";
         }
-
         model.addAttribute("comment", commentService.findById(commentId));
         model.addAttribute("replies", commentService.findByReplyParentId(commentId));
         return "show-comment";
