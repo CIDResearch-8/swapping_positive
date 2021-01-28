@@ -79,9 +79,10 @@ public class CommentController {
         commentService.delete(commentId);
     }
 
+    //マイページの表示
     @GetMapping("{userId}/mypage")
     public String showAccount(@PathVariable String userId, Model model) {
-        if (accountService.findById(userId) == null) {
+        if (!accountService.findById(userId).isPresent()) {
             return "error/user-not-found";
         }
         model.addAttribute("comments", commentService.findByUser(userId));

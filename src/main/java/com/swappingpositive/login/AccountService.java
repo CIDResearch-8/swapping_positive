@@ -43,8 +43,8 @@ public class AccountService implements UserDetailsService {
         }
     }
 
-    public Account findById(String userId) {
-        return accountDao.selectByPrimaryKey(userId);
+    public Optional<Account> findById(String userId) {
+        return Optional.ofNullable(accountDao.selectByPrimaryKey(userId));
     }
 
     public void deleteAccount(String userId) {

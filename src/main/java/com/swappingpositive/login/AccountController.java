@@ -144,11 +144,11 @@ class RestAccountController {
 
     @GetMapping("/rest-api/{userId}/username/get")
     public String getUsername(@PathVariable String userId) {
-        return accountService.findById(userId).getUsername();
+        return accountService.findById(userId).get().getUsername();
     }
 
     @GetMapping("/rest-api/{userId}/icon-uri/get")
     public String getIconUri(@PathVariable String userId) {
-        return accountService.findById(userId).getIconUri();
+        return accountService.findById(userId).get().getIconUri();
     }
 }
