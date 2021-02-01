@@ -16,7 +16,7 @@ Vue.component('comment-view', {
         }
     },
     template: '<div>' +
-                '<div class="comment-block">' +
+                '<div class="comment-block  v-if="comment.replyParentId == null"">' +
                     '<div class ="row border-right border-bottom border-left">' +
                         '<div class ="col-lg-1 icon"><img :src="comment.iconUri" :href="comment.iconUri" height="50" weight="50" class="img-fluid rounded-circle center-block"></div>' +
                         '<div class ="col-lg-11">' +
