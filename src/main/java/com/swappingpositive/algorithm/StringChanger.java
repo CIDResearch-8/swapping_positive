@@ -1,11 +1,11 @@
 package com.swappingpositive.algorithm;
 import java.util.Map;
 
-class StringChanger {
+public class StringChanger {
     private String post;
 
     //StringChangerのメンバ変数に格納
-    void readInString(String str){
+    public void readInString(String str){
         post = str;
         ChangeString();
     }
@@ -22,7 +22,7 @@ class StringChanger {
         }
     }
     //読み込んだ後、変換した文字列を出力
-    String printString(){
+    public String printString(){
         return post;
     }
 }
