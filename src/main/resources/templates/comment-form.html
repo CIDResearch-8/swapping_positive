@@ -13,7 +13,7 @@
 
     <p th:if="${commentError}">ユーザーID、パスワードが空です。</p>
 
-    <form id="text-control" action="#" th:action="@{''}" th:object="${commentForm}" class="form-horizontal" method="post">
+    <form class="form-horizontal text-control" action="#" th:action="@{''}" th:object="${commentForm}" method="post">
         <div class="form-group">
             <div>あなたは{{ userId }}さんですね。</div>
             <textarea class="form-control" th:field="*{comment}" v-model="inputText"

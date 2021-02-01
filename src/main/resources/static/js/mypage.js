@@ -1,54 +1,108 @@
 Vue.component('comment-view', {
     props: {
-        comment: Object
+        comment: Object,
+        nowLoginUser: String
+    },
+    methods: {
+        submit: function(comment) {
+            axios
+                .delete('/rest-api/comment/' + comment.commentId + '/delete')
+                .then(() => {
+                    console.log("success delete");
+                    this.inputText = '';
+                })
+                .catch(err => {
+                    console.log('submit error');
+                });
+        }
     },
     template: '<div>' +
-                '<div class="comment-block" :key="comment.commentId">' +
-                    '<div class="media border border-primary bg-light" v-if="comment.replyParentId == null">' +
-                        '<img class="d-flex align-self-start mr-3" :src="comment.iconUri" :href="comment.iconUri" height="50" weight="50" >' +
-                        '<div class="media-body">' +
-                            '<h5 class="mt-0"><a class="text-dark" :href="\'/\' + comment.userId + \'/mypage\'">{{comment.username}}</a></h5>' +
+                '<div class="comment-block">' +
+                    '<div class ="row border-right border-bottom border-left">' +
+                        '<div class ="col-lg-1 icon"><img :src="comment.iconUri" :href="comment.iconUri" height="50" weight="50" class="img-fluid rounded-circle center-block"></div>' +
+                        '<div class ="col-lg-11">' +
+                            '<div class="row">' +
+                                '<div class= "col-lg-12 block lg-name d-flex">' +
+                                    '<div class="p-2 flex-grow-1 mt-0"><a class="text-dark" :href="\'/\' + comment.userId + \'/mypage\'">{{comment.username}}</a></div>' +
+                                    '<div class="p-2 float-right">' +
+                                      '<button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                                        '<span class="material-icons"> more_vert </span>' +
+                                      '</button>' +
+                                      '<div class="dropdown-menu" aria-labelledby="dropdownMenu1">' +
+                                        '<button type="button" class="dropdown-item btn btn-link" data-toggle="modal" data-target="#exampleModal" :href="\'/comment/\' + comment.commentId + \'/delete\'" :class="{disabled: comment.userId != nowLoginUser}">コメントの削除</button>' +
+                                      '</div>' +
+                                    '</div>' +
+                                '</div>' +
+                                '<div class= "col-lg-12 block"><a :href="\'/\' + comment.userId + \'/comment/\' + comment.commentId" class="text-dark">{{comment.comment}}</a></div>' +
+                            '</div>' +
                             '<a class="text-dark" :href="\'/\' + comment.userId + \'/comment/\' + comment.commentId">' +
-                                '<p>{{comment.comment}}</p>' +
-                            '</a>' +
-                            '<div>' +
-                                '<a class="text-dark" :href="\'/\' + comment.userId + \'/comment/\' + comment.commentId">' +
-                                    '<span class="material-icons">chat</span>' +
+                                '<span class="material-icons">chat</span>' +
                                     '{{comment.replies.length}}' +
                                 '</a>' +
-                                '<span class="text-secondary float-right">{{comment.date}}</span>' +
-                            '</div>' +
+                            '<span class="text-secondary float-right mr-1">{{comment.date}}</span>' +
                         '</div>' +
+                    '</div>' +
+                    '<!-- Modal -->' +
+                   '<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">' +
+                     '<div class="modal-dialog" role="document">' +
+                       '<div class="modal-content">' +
+                         '<div class="modal-header">' +
+                         '<h5 class="modal-title" id="exampleModalLabel">本当にコメントを削除しますか？</h5>' +
+                           '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                             '<span aria-hidden="true">&times;</span>' +
+                           '</button>' +
+                         '</div>' +
+                         '<div class="modal-footer" >' +
+                           '<input type="button" class="btn btn-secondary" data-dismiss="modal" value="しない">' +
+                           '<a href="#!" @click="submit(comment.commentId)" class="btn btn-primary">削除する</a>' +
+                         '</div>' +
+                       '</div>' +
+                     '</div>' +
                    '</div>' +
                 '</div>' +
               '</div>'
-})
+});
 
 var app = new Vue({
     el: '.comment-view',
     data() {
         return {
+            loginUser: "",
             comments: [],
             intervalId: undefined
        }
     },
     mounted() {
-        this.repeatAllCommentGet();
+        var pathUserId = "";
+        var path = location.pathname;
+        var regex = '/[A-Za-z0-9_-]*/';
+        pathUserId = path.match(regex);
+        console.log('pathUserId = ' + pathUserId);
+        if (pathUserId == null) {
+            axios
+                .get('/rest-api/login-user-id/get')
+                .then(response => {
+                    this.loginUser = response.data;
+                    console.log('getting login user ' + this.loginUser);
+                    this.repeatAllCommentGet('/' + this.loginUser + '/');
+                })
+                .catch(err => {
+                    console.log('get error');
+            });
+        }
+        else {
+            console.log('url\'s user found!');
+            this.repeatAllCommentGet(pathUserId);
+        }
     },
     beforeDestroy () {
         console.log('clearInterval');
         clearInterval(this.intervalId);
     },
     methods: {
-        repeatAllCommentGet: function() {
-            var pathUserId = '';
-            var path = location.pathname;
-            var regex = '/[A-Za-z0-9_-]*/';
-            pathUserId = path.match(regex);
-            console.log(pathUserId);
-
+        repeatAllCommentGet: function(loginUser) {
             axios
-                .get('/rest-api/user-comment' + pathUserId + 'get')
+                .get('/rest-api/user-comment' + loginUser + 'get')
                 .then(response => {
                     this.comments = response.data;
                     this.comments.forEach(comment => {

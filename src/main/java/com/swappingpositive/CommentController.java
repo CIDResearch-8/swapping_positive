@@ -66,6 +66,15 @@ public class CommentController {
         commentService.delete(commentId);
     }
 
+    @GetMapping("/mypage")
+    public String showAccount(@AuthenticationPrincipal LoginUser loginUser, Model model) {
+        if (accountService.findById(loginUser.getUserId()) == null) {
+            return "error/user-not-found";
+        }
+        model.addAttribute("comments", commentService.findByUser(loginUser.getUserId()));
+        return "mypage";
+    }
+
     @GetMapping("{userId}/mypage")
     public String showAccount(@PathVariable String userId, Model model) {
         if (accountService.findById(userId) == null) {
@@ -74,6 +83,7 @@ public class CommentController {
         model.addAttribute("comments", commentService.findByUser(userId));
         return "mypage";
     }
+
 
     @GetMapping("/user/home")
     public String showTimeline(Model model) {
