@@ -163,7 +163,7 @@
     </div>
     <!-- Modal -->
     <div class="modal comment-modal text-control" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">' +
+        <div class="modal-dialog" role="document">
             <form class="modal-content text-control" action="#" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="commentModalLabel">コメントを書く</h5>
@@ -179,7 +179,7 @@
                     <span class="badge badge-info float-right m-2">Ctrl + Enter : 送信</span>
                     <span class="form-group">
                         <input type="button" class="btn btn-secondary mr-2" data-dismiss="modal" value="キャンセル">
-                        <button class="btn btn-outline-primary float-right" type="button" @click="submit" v-bind:disabled=isEmpty>Save</button>
+                        <button class="btn btn-outline-primary float-right" type="button" @click="submit" v-bind:disabled=isEmpty>送信</button>
                     </span>
                 </div>
             </form>
