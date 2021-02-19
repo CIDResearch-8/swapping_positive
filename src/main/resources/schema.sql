@@ -1,15 +1,15 @@
-DROP TABLE IF EXISTS account;
-
 CREATE TABLE account (
     user_id VARCHAR(250) NOT NULL PRIMARY KEY,
     username VARCHAR(250) NOT NULL,
     password VARCHAR(250) NOT NULL,
-    email VARCHAR(250) DEFAULT NULL
+    email VARCHAR(250) DEFAULT NULL,
+    icon_uri TEXT DEFAULT NULL
 );
 
 CREATE TABLE comment (
     comment_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     user_id VARCHAR(250) NOT NULL REFERENCES account,
     date TIMESTAMP DEFAULT NULL,
-    comment TEXT DEFAULT NULL
+    comment TEXT DEFAULT NULL,
+    reply_parent_id INT DEFAULT NULL
 );
